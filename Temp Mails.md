@@ -35,6 +35,11 @@ $$ \color{orange}{\textsf{This text is orange!}} $$
 # This line will render in gray
 ```
 
+$\color{red}{\textsf{This text renders in red with no symbols}}$
+
+$\color{green}{\textsf{This text renders in green with no symbols}}$
+
+
 
 Here is a blue color swatch: `#0969DA`
 Here is a green color swatch: `rgb(9, 105, 218)`
