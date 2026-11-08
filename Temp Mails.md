@@ -20,6 +20,10 @@ https://temp-mail.app/
 https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e018621cc1ba94e2ab3  
 
 
-$$ \color{red}{\textsf{\text{This text renders in red with no symbols}}} $$
+$$
+\color{red}{\textsf{This text renders in red with no symbols}}
+$$
 
-$$ \color{green}{\textsf{\text{This text renders in green with no symbols}}} $$
+$$
+\color{green}{\textsf{This text renders in green with no symbols}}
+$$
