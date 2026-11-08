@@ -46,3 +46,6 @@ Here is a normal line of paragraph text featuring a <mark>clean highlighted segm
 
 > [!CAUTION]
 > This text is styled inside a normal font with a clean red highlight bar.
+
+
+<code style="color : green">hiworld</code>
