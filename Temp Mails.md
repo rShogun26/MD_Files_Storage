@@ -20,9 +20,7 @@ https://temp-mail.app/
 https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e018621cc1ba94e2ab3  
 
 
-🔴 `This text is red with a normal font`
 
-🟢 `This text is green with a normal font`
-![](https://shields.io)
+![Red Text](https://shields.io)
 
-![](https://shields.io)
+![Green Text](https://shields.io)
