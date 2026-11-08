@@ -18,3 +18,11 @@ https://zemail.me/disposable-outlook
 https://smailpro.com/temporary-email  
 https://temp-mail.app/  
 https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e018621cc1ba94e2ab3  
+
+
+<!-- Inline syntax ($) -->
+$\color{green}{\textsf{This text is green!}}$
+$\color{blue}{\textbf{This text is blue and bold!}}$
+
+<!-- Block syntax ($$) -->
+$$ \color{orange}{\textsf{This text is orange!}} $$
