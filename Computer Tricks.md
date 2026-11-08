@@ -104,15 +104,14 @@ To ensure your newly created accounts remain active and do not get flagged post-
 
 ## 3. Ultimate Free Google Drive Storage Network Guide
 
-
 ### Phase 1: Set Up the Account & Prevent Deletion
 *This phase tricks Google into thinking you are active so it never deletes your files.*
 
 #### Step 1: Create Account
-Create your new secondary Google account (e.g., $\color{#A31515}\texttt{mycloudstorage2@gmail.com}$).
+Create your new secondary Google account (e.g., $`\color{#A31515}\texttt{mycloudstorage2@gmail.com}`$).
 
 #### Step 2: Open Apps Script
-Open a new browser tab, type <span style="color: red;">**`script.new`**</span> in the URL bar, and hit Enter.
+Open a new browser tab, type $`\color{#A31515}\texttt{script.new}`$ in the URL bar, and hit Enter.
 
 #### Step 3: Paste the Code
 Delete any default text in the code editor, and paste this exact script:
