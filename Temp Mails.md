@@ -26,3 +26,15 @@ $\color{blue}{\textbf{This text is blue and bold!}}$
 
 <!-- Block syntax ($$) -->
 $$ \color{orange}{\textsf{This text is orange!}} $$
+
+
+```diff
+- This line will render in red
++ This line will render in green
+! This line will render in orange
+# This line will render in gray
+```
+
+
+Here is a blue color swatch: `#0969DA`
+Here is a green color swatch: `rgb(9, 105, 218)`
