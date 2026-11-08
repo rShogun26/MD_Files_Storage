@@ -21,31 +21,8 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 
 
 
-![Red Text](https://shields.io)
-
-![Green Text](https://shields.io)
-<img src="https://shields.io" alt="red text">
-
-<img src="https://shields.io" alt="green text">
 
 
-Here is a normal line of paragraph text featuring a <mark>clean highlighted segment</mark> wrapped cleanly in line.
+#0f0[This is green text]
 
-
-> [!NOTE]
-> This text is styled inside a normal font with a clean blue highlight bar.
-
-> [!TIP]
-> This text is styled inside a normal font with a clean green highlight bar.
-
-> [!IMPORTANT]
-> This text is styled inside a normal font with a clean purple highlight bar.
-
-> [!WARNING]
-> This text is styled inside a normal font with a clean orange highlight bar.
-
-> [!CAUTION]
-> This text is styled inside a normal font with a clean red highlight bar.
-
-
-<code style="color : green">hiworld</code>
+#7fffff00[This is yellow text at 50% opacity]
