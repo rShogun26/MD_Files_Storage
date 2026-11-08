@@ -25,3 +25,12 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 This is <span style="color: red;">red text</span> and this is <span style="color: #1a7f37;">green text</span>.
 
 <p>This is <span style="color: red;">red text</span> and this is <span style="color: #1a7f37;">green text</span>.</p>
+
+This is <span style="color: red;">red text</span> on GitHub.
+
+<p>This is <span>red text</span> on GitHub.</p>
+
+Status: $\color{red}{\text{failed}}$ and $\color{green}{\text{passed}}$
+
+<!-- GitHub passes the $...$ expression to MathJax, which draws the colored text.
+The output is MathJax markup, not a <span style> element. -->
