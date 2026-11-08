@@ -27,3 +27,22 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 <img src="https://shields.io" alt="red text">
 
 <img src="https://shields.io" alt="green text">
+
+
+Here is a normal line of paragraph text featuring a <mark>clean highlighted segment</mark> wrapped cleanly in line.
+
+
+> [!NOTE]
+> This text is styled inside a normal font with a clean blue highlight bar.
+
+> [!TIP]
+> This text is styled inside a normal font with a clean green highlight bar.
+
+> [!IMPORTANT]
+> This text is styled inside a normal font with a clean purple highlight bar.
+
+> [!WARNING]
+> This text is styled inside a normal font with a clean orange highlight bar.
+
+> [!CAUTION]
+> This text is styled inside a normal font with a clean red highlight bar.
