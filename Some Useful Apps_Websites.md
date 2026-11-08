@@ -1,4 +1,6 @@
-# <span style="font-size: 35px;">***Some Useful Apps Or Websites***</span>  
+# <span style="font-size: 35px;">***Some Useful Apps Or Websites (Even Small Tricks)***</span>  
+
+
 https://windows-repair-toolbox.com/ → Windows Fixer
 
 https://www.cdcruz.com/p/useful_sites.html  →  Useful Websites
@@ -14,6 +16,11 @@ https://github.com/public-apis/public-apis → Public APIS
 https://fakedetail.com/ → Fake Chat Maker
 
 https://fmhy.net/ → All in One Stuffs **(FreeMediaHeckYeah)**
+
+https://www.genspark.ai/agents?id=7b96a7be-1fb7-4194-b075-6e52d9714bf7 -> ID Generator (Continuation)
+
+https://greasyfork.org/en/scripts/483337-nexus-download-collection → *Nexus Download Collection* **(TamperMonkey Script [chrome extension])**
+
 
 https://www.reddit.com/r/Piracy/wiki/megathread/ → Piracy Megathread (Reddit) 
 
