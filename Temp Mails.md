@@ -20,26 +20,12 @@ https://temp-mail.app/
 https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e018621cc1ba94e2ab3  
 
 
-<!-- Inline syntax ($) -->
-$\color{green}{\textsf{This text is green!}}$
-$\color{blue}{\textbf{This text is blue and bold!}}$
 
-<!-- Block syntax ($$) -->
-$$ \color{orange}{\textsf{This text is orange!}} $$
+$\color{red}{\text{This text renders in red with no symbols}}$
 
+$\color{green}{\text{This text renders in green with no symbols}}$
 
-```diff
-- This line will render in red
-+ This line will render in green
-! This line will render in orange
-# This line will render in gray
-```
+$\color{red}{\textsf{\text{This text renders in red with no symbols}}}$
 
-$\color{red}{\textsf{This text renders in red with no symbols}}$
+$\color{green}{\textsf{\text{This text renders in green with no symbols}}}$
 
-$\color{green}{\textsf{This text renders in green with no symbols}}$
-
-
-
-Here is a blue color swatch: `#0969DA`
-Here is a green color swatch: `rgb(9, 105, 218)`
