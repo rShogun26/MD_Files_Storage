@@ -173,14 +173,14 @@ Click the **Save** icon (the small floppy disk) at the top.
 Click the **Triggers** icon (the alarm clock) on the left vertical menu.
 
 #### Step 6: Create New Trigger
-Click the blue ![+ Add Trigger](https://img.shields.io/badge/+%20Add%20Trigger-red) button in the bottom right corner.
+Click the ![+ Add Trigger](https://img.shields.io/badge/+%20Add%20Trigger-1a73e8) button in the bottom right corner.
 
 #### Step 7: Configure Options
 Set the configuration options exactly like this:
-* **Choose which function to run:** ![keepAccountAlive](https://img.shields.io/badge/keepAccountAlive-red)
-* **Select event source:** ![Time-driven](https://img.shields.io/badge/Time--driven-red)
-* **Select type of time-based trigger:** ![Week timer](https://img.shields.io/badge/Week%20timer-red)
-* **Select day of week:** ![Every Monday](https://img.shields.io/badge/Every%20Monday-red) (or any day you prefer)
+* **Choose which function to run:** ![keepAccountAlive](https://img.shields.io/badge/keepAccountAlive-d90429)
+* **Select event source:** ![Time-driven](https://img.shields.io/badge/Time--driven-d90429)
+* **Select type of time-based trigger:** ![Week timer](https://img.shields.io/badge/Week%20timer-d90429)
+* **Select day of week:** ![Every Monday](https://img.shields.io/badge/Every%20Monday-d90429) (or any day you prefer)
 
 #### Step 8: Commit Trigger
 Click the blue **Save** button.
