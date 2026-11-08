@@ -26,3 +26,11 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 #0f0[This is green text]
 
 #7fffff00[This is yellow text at 50% opacity]
+
+#rgb[Text using 3 chars notation (red = f00)]
+#rrggbb[Text using 6 chars notation (red = ff0000)]
+#aarrggbb[Text using 8 chars notation (red = ffff0000)]
+
+
+${{\color{Goldenrod}\Huge{\textsf{  Hi\ there\ \}}}}\$
+
