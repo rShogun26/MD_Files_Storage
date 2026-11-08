@@ -21,6 +21,6 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 
 
 
-<font color="#bce9bc"> Some green text </font>
+<font color="#0a3f0a"> Some green text </font>
 
-$\color{#bce9bc}\textsf{Some green text}$
+$\color{#0a3f0a}\textsf{Some green text}$
