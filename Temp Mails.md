@@ -23,3 +23,4 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 
 <font color="#bce9bc"> Some green text </font>
 
+$\color{#bce9bc}\textsf{Some green text}$
