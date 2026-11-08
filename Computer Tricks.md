@@ -1181,7 +1181,7 @@ Extracts and exports your Discord Favorite GIFs into a clean, standalone JSON fi
 
 ---
 ### Tool 2: Discord Animated Link Optimizer & ZIP Exporter (Bookmarklet)
----
+
 
 Scrapes any opened `.json` or text file containing GIF/WebP URLs in your browser, resizes each image to **128x128**, recompresses/crushes heavy frames to strictly comply with Discord's **<256 KB upload limit**, and compiles everything into a single `discord_gifs_webp.zip` file.
 
@@ -1199,6 +1199,8 @@ javascript:(function(){var P=String.fromCharCode(37);var old=document.getElement
 ```
 
 </details>
+
+---
 
 ### Tool 3: Server Emoji CDN Extractor & Exporter
 
