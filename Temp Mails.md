@@ -24,3 +24,6 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 ![Red Text](https://shields.io)
 
 ![Green Text](https://shields.io)
+<img src="https://shields.io" alt="red text">
+
+<img src="https://shields.io" alt="green text">
