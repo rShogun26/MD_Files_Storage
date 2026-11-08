@@ -20,10 +20,4 @@ https://temp-mail.app/
 https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e018621cc1ba94e2ab3  
 
 
-
-Status: <span style="color:#d63384">**Action required**</span>
-
-<span style="color:red">Red text</span>
-<span style="color:blue">Blue text</span>
-<span style="color:green">Green text</span>
-<span style="color:orange">Orange text</span>
+$\color{#58A6FF}\textsf{\large&amp;#x24D8;\kern{0.2cm}\normalsize Note}$
