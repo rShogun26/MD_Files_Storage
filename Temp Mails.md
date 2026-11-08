@@ -23,3 +23,6 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 🔴 `This text is red with a normal font`
 
 🟢 `This text is green with a normal font`
+![](https://shields.io)
+
+![](https://shields.io)
