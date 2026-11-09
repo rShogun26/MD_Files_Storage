@@ -21,15 +21,8 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 
 
 
-$\color{#EA4A5A}{` This is red text inside a code block background `}$
+| $\color{#EA4A5A}{\text{This is red text with a light red background}}$ |
+| :--- |
 
-$\color{#137333}{` This is green text inside a code block background `}$
-
-$\color{#1A73E8}{` This is blue text inside a code block background `}$
-
-
-<mark>$\color{#EA4A5A}{\text{This is red text inside a translucent highlight}}$</mark>
-
-<mark>$\color{#137333}{\text{This is green text inside a translucent highlight}}$</mark>
-
-<mark>$\color{#1A73E8}{\text{This is blue text inside a translucent highlight}}$</mark>
+| $\color{#137333}{\text{This is green text with a light green background}}$ |
+| :--- |
