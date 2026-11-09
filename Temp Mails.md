@@ -18,14 +18,3 @@ https://zemail.me/disposable-outlook
 https://smailpro.com/temporary-email  
 https://temp-mail.app/  
 https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e018621cc1ba94e2ab3  
-
-
-
-
-| > [!CAUTION]<br>> $\color{#EA4A5A}{\text{This is red text with a light red background}}$ |
-| :--- |
-
-`$\color{#EA4A5A}{\text{This is red text with a light red background}}$`
-
-> [!CAUTION]
-> This is main red text with a light red background.
