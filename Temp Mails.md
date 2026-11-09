@@ -18,3 +18,7 @@ https://zemail.me/disposable-outlook
 https://smailpro.com/temporary-email  
 https://temp-mail.app/  
 https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e018621cc1ba94e2ab3  
+
+
+
+$${\color{green}{\text{This is a centered green block}}}$$
