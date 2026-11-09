@@ -21,8 +21,7 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 
 
 
-| $\color{#EA4A5A}{\text{This is red text with a light red background}}$ |
+
+| > [!CAUTION]<br>> $\color{#EA4A5A}{\text{This is red text with a light red background}}$ |
 | :--- |
 
-| $\color{#137333}{\text{This is green text with a light green background}}$ |
-| :--- |
