@@ -26,3 +26,10 @@ $\color{#EA4A5A}{` This is red text inside a code block background `}$
 $\color{#137333}{` This is green text inside a code block background `}$
 
 $\color{#1A73E8}{` This is blue text inside a code block background `}$
+
+
+<mark>$\color{#EA4A5A}{\text{This is red text inside a translucent highlight}}$</mark>
+
+<mark>$\color{#137333}{\text{This is green text inside a translucent highlight}}$</mark>
+
+<mark>$\color{#1A73E8}{\text{This is blue text inside a translucent highlight}}$</mark>
