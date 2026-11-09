@@ -21,35 +21,8 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 
 
 
-$${\color{green}{\text{This is a centered green block}}}$$
+$\color{#EA4A5A}{` This is red text inside a code block background `}$
 
+$\color{#137333}{` This is green text inside a code block background `}$
 
-$\color{red}{\mathsf{This\ text\ is\ red\ and\ sans-serif}}$
-
-
-$\color{#0969DA}{\mathtt{This\ text\ is\ blue\ and\ monospaced}}$
-
-
-> [!NOTE]
-> This creates a blue information banner.
-
-> [!TIP]
-> This creates a green tip banner.
-
-> [!WARNING]
-> This creates an amber warning banner.
-
-> [!CAUTION]
-> This creates a red danger banner.
-
-
-$\colorbox{#FFEBEB}{\color{#EA4A5A}{\mathsf{\ This\ is\ red\ text\ with\ a\ soft\ red\ background\ }}}$
-
-$\colorbox{#E6F4EA}{\color{#137333}{\mathsf{\ This\ is\ green\ text\ with\ a\ soft\ green\ background\ }}}$
-
-$\colorbox{#E8F0FE}{\color{#1A73E8}{\mathsf{\ This\ is\ blue\ text\ with\ a\ soft\ blue\ background\ }}}$
-
-
-$\colorbox{#311C1C}{\color{#FF6B6B}{\mathsf{\ Red\ text\ inside\ a\ dark\ translucent\ box\ }}}$
-
-$\colorbox{#1C2D1C}{\color{#6BCB77}{\mathsf{\ Green\ text\ inside\ a\ dark\ translucent\ box\ }}}$
+$\color{#1A73E8}{` This is blue text inside a code block background `}$
