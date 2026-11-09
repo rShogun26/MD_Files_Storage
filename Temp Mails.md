@@ -25,3 +25,4 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 | > [!CAUTION]<br>> $\color{#EA4A5A}{\text{This is red text with a light red background}}$ |
 | :--- |
 
+`$\color{#EA4A5A}{\text{This is red text with a light red background}}$`
