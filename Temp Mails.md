@@ -22,3 +22,22 @@ https://account.live.com/AddAssocId?ru=&cru=&fl=&lc=1033&uaid=c575bd79d5044e0186
 
 
 $${\color{green}{\text{This is a centered green block}}}$$
+
+
+$\color{red}{\mathsf{This\ text\ is\ red\ and\ sans-serif}}$
+
+
+$\color{#0969DA}{\mathtt{This\ text\ is\ blue\ and\ monospaced}}$
+
+
+> [!NOTE]
+> This creates a blue information banner.
+
+> [!TIP]
+> This creates a green tip banner.
+
+> [!WARNING]
+> This creates an amber warning banner.
+
+> [!CAUTION]
+> This creates a red danger banner.
