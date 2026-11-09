@@ -818,7 +818,7 @@ Quickly purges all custom emojis from a server you own or manage. It extracts th
 
 ---
 
-### 2. Video & Audio Changer (`script.js` &rarr; Bookmarking)
+## 2. Video & Audio Changer (`script.js` &rarr; Bookmarking)
 
 <details>
 <summary>Click to expand / view script code</summary>
