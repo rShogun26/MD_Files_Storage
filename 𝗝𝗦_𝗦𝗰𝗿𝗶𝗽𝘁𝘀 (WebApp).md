@@ -849,8 +849,7 @@ javascript:(function(){const cbs=Array.from(document.querySelectorAll('[role="ch
 
 ---
 
-## 4. Course Helper (iGOTKarmayogi) - for Completion (`script.js` &rarr; Bookmarking)
-
+## 4. Course Helper (iGOTKarmayogi) - for Completion
 
 #### How to Use:
 1. Access from below of this URL
