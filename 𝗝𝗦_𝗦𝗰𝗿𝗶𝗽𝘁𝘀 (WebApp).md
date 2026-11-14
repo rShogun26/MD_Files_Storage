@@ -848,3 +848,20 @@ javascript:(function(){const cbs=Array.from(document.querySelectorAll('[role="ch
 </details>
 
 ---
+
+## 4. Course Helper (iGOTKarmayogi) - for Completion (`script.js` &rarr; Bookmarking)
+
+
+#### How to Use:
+1. Access from below of this URL
+2. Click On Raw, and `Ctrl + A` to copy the entire code
+3. Press F12 or  `Ctrl + Shift + I` and switch to the **Console** tab.
+4. Paste the script below and hit Enter. The entire course helper will be automated
+https://gist.github.com/rShogun26/b21e3a3460b531a04e058b3362865c48
+
+#### For API: 
+Just follow the steps respectively to access the AI features for assessments automation
+
+
+
+---
