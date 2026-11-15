@@ -11,10 +11,9 @@ https://edumailfree.com/
 https://openinbox.io  
 https://www.run2mail.com  
 https://emailmux.com  
-https://zemail.me/disposable-outlook  
 https://smailpro.com/temporary-email  
 https://temp-mail.app/  
-https://account.live.com/names/manage  
+https://account.live.com/names/manage  (Microsoft Outlook Alias Generator (Limited))
 https://temphotmail.com/random-email-generator  
 
 
