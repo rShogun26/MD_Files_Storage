@@ -855,12 +855,27 @@ javascript:(function(){const cbs=Array.from(document.querySelectorAll('[role="ch
 1. Access from below of this URL
 2. Click On Raw, and `Ctrl + A` to copy the entire code
 3. Press F12 or  `Ctrl + Shift + I` and switch to the **Console** tab.
-4. Paste the script below and hit Enter. The entire course helper will be automated
-https://gist.github.com/rShogun26/b21e3a3460b531a04e058b3362865c48
+4. Paste the script below and hit Enter. The entire course helper will be automated  
+**Script (`iGOTKarmayogi(CourseHelper).js`):**
+**https://gist.github.com/rShogun26/b21e3a3460b531a04e058b3362865c48**
 
 #### For API: 
 Just follow the steps respectively to access the AI features for assessments automation
 
-
-
 ---
+
+## 5. SigStick Sticker Pack Downloader (`SigPack(Stickers)_Downloader.js` → Bookmarking)
+
+Automatically detects, expands, and downloads the entire sticker pack from **SigStick (`sigstick.com/pack/...`)** in high-resolution, lossless **`.webp`** format packed into a single `.zip` file (excluding site icons and button badges).
+
+**How to Use (Method 1 — Bookmarklet / 1-Click):**
+
+1. Copy the raw Bookmarklet code from the Gist or the expandable section below (`Ctrl + A` → `Ctrl + C`).
+2. In your browser, right-click your **Bookmarks Bar** → **Add Page / Add Bookmark**.
+3. Set the **Name** to `SigStick DL` and paste the code into the **URL** field.
+4. Open any sticker pack on `https://www.sigstick.com/pack/...` and click the **SigStick DL** bookmark. The `.zip` will download automatically.
+
+
+**Script (`SigPack(Stickers)_Downloader.js`):**
+**https://gist.github.com/rShogun26/2dbcd3f0d39e4cc65bd890b8b2ce8173**
+
