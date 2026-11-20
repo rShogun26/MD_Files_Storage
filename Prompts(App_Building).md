@@ -46,12 +46,7 @@ STEP 5 — END OF TURN (CHOOSE EXACTLY ONE):
 ## //𝐍𝐞𝐰-𝐓𝐚𝐬𝐤 𝐅𝐨𝐨𝐭𝐞𝐫 (𝐏𝐚𝐬𝐭𝐞 𝐚𝐭 𝐭𝐡𝐞 𝐛𝐨𝐭𝐭𝐨𝐦 𝐨𝐟 𝐀𝐍𝐘 𝐧𝐞𝐰 𝐭𝐚𝐬𝐤 — 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭 𝐎𝐑 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭):
 
 ```text
-Budget for this turn: $[INSERT AMOUNT]. Follow my `creditsafe` workflow in strict order:
-1. Read MAX 3–4 relevant files total (no repo scans, no guessing symbols, and do NOT run `git log` / inspect past commit diffs unless asked). Even if my prompt above mixes 1 or several uneven tasks together, ALWAYS identify and split them into clear, ordered `Task 1, Task 2, ...` checkboxes (`- [ ]` / `- [x]`) inside `TODO_CONTINUATION.md` FIRST before editing code—using a compact, self-contained format (`## Goal & Exact Issue`, `## Task Checklist`, `## Changes & Verification`) assuming zero chat history next session.
-2. Execute tasks **consecutively one by one in order** (`Task 1` -> `Task 2`...) paced to my `$` budget (`$2.00+`: finish all tasks or 2–3 full tasks; `$0.75–$1.99`: 1–2 full tasks; `<$0.75`: 1 clean task or sub-task). Never stop with 0 code edits; stop early only if the same error fails twice.
-3. Immediately after editing—BEFORE running any check command—update `TODO_CONTINUATION.md` by checking off finished tasks (`- [x]`), keeping pending tasks (`- [ ]`), and noting modified files/functions.
-4. Run ONLY 1 fast syntax/type check (`tsc --noEmit` or `cargo check`, or `git diff --check` if tools are missing). NEVER run `build`, `--release`, full test suites, or browser previews unless asked.
-5. End cleanly: Case A (updated checkbox `TODO_CONTINUATION.md` + short RESUME LOG) OR Case B (only when ALL checkboxes are done: delete all continuation `.md` files, write no continuation steps, state TASK COMPLETED, and list manual verification/GitHub/PR/deploy steps).
+Budget: $Insert_Budget — strictly follow active creditsafe Steps 1–5 (parse into ordered TODO_CONTINUATION.md tasks first, execute Tasks 1→2→3 consecutively paced to this budget, checkpoint - [x] BEFORE 1 fast check, end with Case A or Case B).
 ```
 
 ---
@@ -59,15 +54,7 @@ Budget for this turn: $[INSERT AMOUNT]. Follow my `creditsafe` workflow in stric
 ## //𝐂𝐡𝐚𝐭 𝐂𝐨𝐧𝐭𝐢𝐧𝐮𝐚𝐭𝐢𝐨𝐧 & 𝐂𝐫𝐚𝐬𝐡 𝐑𝐞𝐜𝐨𝐯𝐞𝐫𝐲 (𝐏𝐚𝐬𝐭𝐞 𝐀𝐋𝐎𝐍𝐄 𝐭𝐨 𝐫𝐞𝐬𝐮𝐦𝐞 𝐢𝐧 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭, 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭, 𝐎𝐑 𝐍𝐞𝐰 𝐀𝐜𝐜𝐨𝐮𝐧𝐭):
 
 ```text
-Budget remaining: $[INSERT AMOUNT]. Resume the task following my `creditsafe` workflow in strict order:
-
-1. Read `TODO_CONTINUATION.md` (or any `*_CONTINUATION.md` file) and MAX 3–4 relevant target files for the first unchecked `- [ ]` item (skip `- [x]` completed items; no repo scans, no `git log` unless asked). If the previous turn hit `Agent Timeout` or `Model unavailable` before saving `TODO_CONTINUATION.md`, run `git status` / `git diff --stat` once to pick up uncommitted edits and create/update the checkbox `TODO_CONTINUATION.md` first.
-2. Immediately make real, surgical code edits paced to my `$` budget (`$2.00+`: finish all remaining work or 2–3 full milestones; `$0.75–$1.99`: 1–2 full milestones; `<$0.75`: 1 clean step). Never stop with 0 code edits; stop early only if the same error fails twice.
-3. Immediately after editing—BEFORE running any check command—flip completed items to `- [x]` in `TODO_CONTINUATION.md`, keep remaining items as `- [ ]`, and concisely record modified files/functions.
-4. Run ONLY 1 fast syntax/type check (`tsc --noEmit` or `cargo check`, or `git diff --check` if tools are missing). NEVER run `build`, `--release`, full test suites, or browser previews unless asked.
-5. End cleanly:
-   - IF work remains (Case A): Ensure `TODO_CONTINUATION.md` clearly reflects `- [x]` done vs `- [ ]` next with check status, then output a short **RESUME LOG**.
-   - IF 100% finished (Case B): Delete all continuation `.md` files, write NO continuation steps, state **TASK COMPLETED**, and list manual verification/GitHub/PR/deploy steps.
+Budget remaining: $Insert_Budget — resume strictly per active creditsafe Steps 1–5. Read TODO_CONTINUATION.md (or run git status / git diff --stat once if the last turn timed out before saving it) and max 3–4 target files for the first unchecked - [ ] task, execute remaining tasks consecutively paced to this budget, checkpoint - [x] BEFORE 1 fast check, and end cleanly with Case A or Case B.
 ```
 
 ---
