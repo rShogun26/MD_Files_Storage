@@ -870,10 +870,11 @@ Automatically detects, expands, and downloads the entire sticker pack from **Sig
 
 **How to Use (Method 1 — Bookmarklet / 1-Click):**
 
-1. Copy the raw Bookmarklet code from the Gist or the expandable section below (`Ctrl + A` → `Ctrl + C`).
-2. In your browser, right-click your **Bookmarks Bar** → **Add Page / Add Bookmark**.
-3. Set the **Name** to `SigStick DL` and paste the code into the **URL** field.
-4. Open any sticker pack on `https://www.sigstick.com/pack/...` and click the **SigStick DL** bookmark. The `.zip` will download automatically.
+1. `https://www.sigstick.com/` for downloading packs without ease (webp output)
+2. Copy the raw Bookmarklet code from the Gist or the expandable section below (`Ctrl + A` → `Ctrl + C`).
+3. In your browser, right-click your **Bookmarks Bar** → **Add Page / Add Bookmark**.
+4. Set the **Name** to `SigStick DL` and paste the code into the **URL** field.
+5. Open any sticker pack on `https://www.sigstick.com/pack/...` and click the **SigStick DL** bookmark. The `.zip` will download automatically.
 
 
 **Script (`SigPack(Stickers)_Downloader.js`):**
