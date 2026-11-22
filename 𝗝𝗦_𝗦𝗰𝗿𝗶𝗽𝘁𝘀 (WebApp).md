@@ -1,6 +1,8 @@
-## 1. Discord Asset Management & Automation Suite
+# Discord Asset Management & Automation Suite
 
-This toolkit contains browser console scripts and bookmarklets to extract, optimize, manage, and batch-clean Discord emojis and favorite GIFs.
+A comprehensive collection of browser console scripts and zero-`localStorage` bookmarklets to extract, optimize, manage, import, refresh, and batch-clean Discord custom emojis and favorite GIFs/WebPs.
+
+> **Quick Note on Permanent GIFs:** Files uploaded directly to a Discord channel use signed `cdn.discordapp.com` links (`ex=` / `is=` / `hm=`) that expire after ~24 hours and break if the message/server is deleted. For permanent favorites, store your `.gif` / `.webp` files in a **Public GitHub repository** and import them with **Tool 7**.
 
 ---
 
@@ -559,8 +561,8 @@ Extracts and exports your Discord Favorite GIFs into a clean, standalone JSON fi
 </details>
 
 ---
-### Tool 2: Discord Animated Link Optimizer & ZIP Exporter (Bookmarklet)
 
+### Tool 2: Discord Animated Link Optimizer & ZIP Exporter (Bookmarklet)
 
 Scrapes any opened `.json` or text file containing GIF/WebP URLs in your browser, resizes each image to **128x128**, recompresses/crushes heavy frames to strictly comply with Discord's **<256 KB upload limit**, and compiles everything into a single `discord_gifs_webp.zip` file.
 
@@ -586,7 +588,7 @@ javascript:(function(){var P=String.fromCharCode(37);var old=document.getElement
 Extracts all custom emojis from a server's emoji management screen, sets their resolution to a standard size (`256px`), preserves GIF animations, logs the URLs, copies them to your clipboard, and automatically downloads `emojis.json`.
 
 #### How to Use:
-1. Open Discord Web and navigate to **Server Settings** $\rightarrow$ **Emoji**.
+1. Open Discord Web and navigate to **Server Settings** -> **Emoji**.
 2. Open DevTools Console (`Ctrl + Shift + I`).
 3. Paste the code below and press Enter.
 
@@ -672,7 +674,7 @@ Extracts all custom emojis from a server's emoji management screen, sets their r
 Quickly purges all custom emojis from a server you own or manage. It extracts the authentication token from Discord's internal webpack chunk to issue direct REST `DELETE` API requests with automatic rate-limit handling (`HTTP 429`), falling back to simulated UI button clicks if necessary.
 
 #### How to Use:
-1. Open Discord Web and navigate to **Server Settings** $\rightarrow$ **Emoji** of the server you wish to clear.
+1. Open Discord Web and navigate to **Server Settings** -> **Emoji** of the server you wish to clear.
 2. Open DevTools Console (`Ctrl + Shift + I`).
 3. Paste the code below and hit Enter. Confirm the browser dialog prompt.
 4. *(Optional)* To abort deletion at any point, paste `window.stopDeleting = true` into the console.
@@ -815,6 +817,586 @@ Quickly purges all custom emojis from a server you own or manage. It extracts th
 
 </details>
 
+---
+
+### Tool 5: Discord Favorite GIFs Batch Deleter
+
+Permanently clears **all** saved/favorite GIFs from your Discord account in a single settings sync (`FrecencyUserSettings`). Safe against Discord's minified builds and wildcard i18n proxies.
+
+#### How to Use:
+1. Open [Discord Web](https://discord.com/app) in your browser and log in.
+2. Press `Ctrl + Shift + I` (or `Cmd + Option + I` on macOS) and switch to the **Console** tab.
+3. If prompted, type `allow pasting` and press Enter.
+4. Paste the script below and hit Enter.
+
+#### Script (`discord-delete-all-fav-gifs.js`):
+<details>
+<summary>Click to expand script</summary>
+
+```javascript
+/**
+ * Discord Favorite GIFs Batch Deleter
+ * Clears all saved/favorite GIFs via FrecencyUserSettings.updateAsync.
+ */
+(async () => {
+  const requires = [];
+  window.webpackChunkdiscord_app.push([
+    [Symbol()],
+    {},
+    (r) => requires.push(r),
+  ]);
+  window.webpackChunkdiscord_app.pop();
+
+  const wpRequire = requires.sort(
+    (a, b) => Object.keys(b?.c || {}).length - Object.keys(a?.c || {}).length
+  )[0];
+
+  if (!wpRequire?.c) {
+    console.error("Failed to hook into Discord webpack cache.");
+    return;
+  }
+
+  const candidates = [];
+  const seen = new Set();
+  const add = (obj) => {
+    if (
+      !obj ||
+      (typeof obj !== "object" && typeof obj !== "function") ||
+      obj === window ||
+      obj === document ||
+      obj === DOMTokenList.prototype ||
+      seen.has(obj)
+    ) return;
+    seen.add(obj);
+    candidates.push(obj);
+  };
+
+  const scanExports = (exp) => {
+    add(exp);
+    if (!exp || typeof exp !== "object") return;
+    let keys = [];
+    try { keys = Object.keys(exp); } catch { return; }
+    for (const k1 of keys) {
+      let v1;
+      try { v1 = exp[k1]; } catch { continue; }
+      add(v1);
+      if (v1 && typeof v1 === "object") {
+        let keys2 = [];
+        try { keys2 = Object.keys(v1); } catch { continue; }
+        for (const k2 of keys2) {
+          try { add(v1[k2]); } catch {}
+        }
+      }
+    }
+  };
+
+  for (const mod of Object.values(wpRequire.c)) {
+    scanExports(mod?.exports);
+  }
+
+  const findSafe = (fn) =>
+    candidates.find((x) => {
+      try {
+        return x?.__notARealProp123__ === undefined && fn(x);
+      } catch {
+        return false;
+      }
+    });
+
+  let FrecencyStore = findSafe(
+    (x) =>
+      x?.ProtoClass?.typeName?.endsWith(".FrecencyUserSettings") &&
+      typeof x?.updateAsync === "function"
+  );
+
+  if (!FrecencyStore && wpRequire.m) {
+    for (const [id, factory] of Object.entries(wpRequire.m)) {
+      try {
+        const src = factory.toString();
+        if (
+          (src.includes("FrecencyUserSettings") && src.includes("ProtoClass")) ||
+          (src.includes("favoriteGifs") && src.includes("updateAsync"))
+        ) {
+          scanExports(wpRequire(id));
+        }
+      } catch {}
+    }
+    FrecencyStore = findSafe(
+      (x) =>
+        x?.ProtoClass?.typeName?.endsWith(".FrecencyUserSettings") &&
+        typeof x?.updateAsync === "function"
+    );
+  }
+
+  if (!FrecencyStore) {
+    const protoStores = candidates.filter((x) => {
+      try {
+        return (
+          x?.__notARealProp123__ === undefined &&
+          typeof x?.updateAsync === "function" &&
+          typeof x?.getCurrentValue === "function"
+        );
+      } catch { return false; }
+    });
+    for (const s of protoStores) {
+      try {
+        if (typeof s.loadIfNecessary === "function") await s.loadIfNecessary();
+        const val = s.getCurrentValue();
+        if (val && (val.favoriteGifs !== undefined || "favoriteGifs" in val)) {
+          FrecencyStore = s;
+          break;
+        }
+      } catch {}
+    }
+  }
+
+  if (!FrecencyStore) {
+    console.error("Could not locate Discord's FrecencyUserSettings store.");
+    return;
+  }
+
+  const delayObj = findSafe(
+    (x) => typeof x?.INFREQUENT_USER_ACTION === "number"
+  );
+
+  if (typeof FrecencyStore.loadIfNecessary === "function") {
+    await FrecencyStore.loadIfNecessary();
+  }
+
+  const gifs = FrecencyStore.getCurrentValue()?.favoriteGifs?.gifs || {};
+  const count = Object.keys(gifs).length;
+
+  if (count === 0) {
+    console.log("No favorite GIFs found to delete.");
+    return;
+  }
+
+  console.log(`Deleting ${count} favorite GIF(s)...`);
+  await FrecencyStore.updateAsync(
+    "favoriteGifs",
+    (data) => {
+      if (!data.gifs) return false;
+      for (const key of Object.keys(data.gifs)) {
+        delete data.gifs[key];
+      }
+    },
+    delayObj?.INFREQUENT_USER_ACTION
+  );
+
+  const remaining = Object.keys(
+    FrecencyStore.getCurrentValue()?.favoriteGifs?.gifs || {}
+  ).length;
+  console.log(`Done! Deleted ${count} favorite(s). Remaining: ${remaining}.`);
+})();
+```
+
+</details>
+
+---
+
+### Tool 6: Discord Channel GIF & WebP Auto-Favoriter
+
+Scans the **currently open chat channel** (automatically paginating through up to 3,000 messages) and adds every uploaded `.gif` / `.webp` attachment and `gifv` / `.gif` / `.webp` embed directly to your Discord Favorites, skipping duplicates.
+
+> **Note:** Uploaded Discord CDN attachments (`cdn.discordapp.com`) expire after ~24h and break if the channel/server is deleted. For truly permanent favorites, use **Tool 7** with a Public GitHub repo.
+
+#### How to Use:
+1. Open the Discord channel containing your GIFs/WebPs on [Discord Web](https://discord.com/app).
+2. Press `Ctrl + Shift + I` (or `Cmd + Option + I` on macOS) and switch to the **Console** tab.
+3. Paste the script below and press Enter.
+
+#### Script (`discord-fav-channel-gifs.js`):
+<details>
+<summary>Click to expand script</summary>
+
+```javascript
+/**
+ * Discord Channel GIF & WebP Auto-Favoriter
+ * Fetches messages in the active channel and saves all .gif / .webp / gifv items to Favorites.
+ */
+(async () => {
+  const requires = [];
+  window.webpackChunkdiscord_app.push([
+    [Symbol()],
+    {},
+    (r) => requires.push(r),
+  ]);
+  window.webpackChunkdiscord_app.pop();
+
+  const wpRequire = requires.sort(
+    (a, b) => Object.keys(b?.c || {}).length - Object.keys(a?.c || {}).length
+  )[0];
+
+  if (!wpRequire?.c) {
+    console.error("Failed to hook into Discord webpack cache.");
+    return;
+  }
+
+  const candidates = [];
+  const seen = new Set();
+  const add = (obj) => {
+    if (
+      !obj ||
+      (typeof obj !== "object" && typeof obj !== "function") ||
+      obj === window ||
+      obj === document ||
+      obj === DOMTokenList.prototype ||
+      seen.has(obj)
+    ) return;
+    seen.add(obj);
+    candidates.push(obj);
+  };
+
+  const scanExports = (exp) => {
+    add(exp);
+    if (!exp || typeof exp !== "object") return;
+    let keys = [];
+    try { keys = Object.keys(exp); } catch { return; }
+    for (const k1 of keys) {
+      let v1;
+      try { v1 = exp[k1]; } catch { continue; }
+      add(v1);
+      if (v1 && typeof v1 === "object") {
+        let keys2 = [];
+        try { keys2 = Object.keys(v1); } catch { continue; }
+        for (const k2 of keys2) {
+          try { add(v1[k2]); } catch {}
+        }
+      }
+    }
+  };
+
+  for (const mod of Object.values(wpRequire.c)) {
+    scanExports(mod?.exports);
+  }
+
+  const findSafe = (fn) =>
+    candidates.find((x) => {
+      try {
+        return x?.__notARealProp123__ === undefined && fn(x);
+      } catch {
+        return false;
+      }
+    });
+
+  let FrecencyStore = findSafe(
+    (x) =>
+      x?.ProtoClass?.typeName?.endsWith(".FrecencyUserSettings") &&
+      typeof x?.updateAsync === "function"
+  );
+
+  if (!FrecencyStore && wpRequire.m) {
+    for (const [id, factory] of Object.entries(wpRequire.m)) {
+      try {
+        const src = factory.toString();
+        if (
+          (src.includes("FrecencyUserSettings") && src.includes("ProtoClass")) ||
+          (src.includes("favoriteGifs") && src.includes("updateAsync"))
+        ) {
+          scanExports(wpRequire(id));
+        }
+      } catch {}
+    }
+    FrecencyStore = findSafe(
+      (x) =>
+        x?.ProtoClass?.typeName?.endsWith(".FrecencyUserSettings") &&
+        typeof x?.updateAsync === "function"
+    );
+  }
+
+  if (!FrecencyStore) {
+    const protoStores = candidates.filter((x) => {
+      try {
+        return (
+          x?.__notARealProp123__ === undefined &&
+          typeof x?.updateAsync === "function" &&
+          typeof x?.getCurrentValue === "function"
+        );
+      } catch { return false; }
+    });
+    for (const s of protoStores) {
+      try {
+        if (typeof s.loadIfNecessary === "function") await s.loadIfNecessary();
+        const val = s.getCurrentValue();
+        if (val && (val.favoriteGifs !== undefined || "favoriteGifs" in val)) {
+          FrecencyStore = s;
+          break;
+        }
+      } catch {}
+    }
+  }
+
+  const delayObj = findSafe(
+    (x) => typeof x?.INFREQUENT_USER_ACTION === "number"
+  );
+
+  const channelId = location.pathname.match(/\/channels\/(?:@me|\d+)\/(\d+)/)?.[1];
+
+  const RestAPI = findSafe(
+    (x) =>
+      typeof x?.getAPIBaseURL === "function" &&
+      typeof x?.get === "function" &&
+      typeof x?.post === "function"
+  );
+
+  const authMod = findSafe(
+    (x) =>
+      typeof x?.setToken === "function" &&
+      typeof x?.getToken === "function" &&
+      typeof x?.removeToken === "function"
+  );
+  const rawToken = authMod?.getToken?.();
+  const token = typeof rawToken === "string" && rawToken.length > 20 ? rawToken : null;
+
+  if (!FrecencyStore || !channelId || (!RestAPI && !token)) {
+    console.error("Missing required Discord internals:", {
+      FrecencyStore: !!FrecencyStore,
+      channelId,
+      RestAPI: !!RestAPI,
+      hasToken: !!token,
+    });
+    return;
+  }
+
+  console.log(`Scanning channel ${channelId} for .gif and .webp files...`);
+  const allMessages = [];
+  let before;
+
+  for (let page = 0; page < 30; page++) {
+    let batch;
+    if (RestAPI) {
+      const res = await RestAPI.get({
+        url: `/channels/${channelId}/messages`,
+        query: before ? { limit: 100, before } : { limit: 100 },
+      });
+      batch = Array.isArray(res) ? res : res?.body;
+    } else {
+      const qs = new URLSearchParams(before ? { limit: "100", before } : { limit: "100" });
+      const res = await fetch(`/api/v9/channels/${channelId}/messages?${qs}`, {
+        headers: { Authorization: token },
+      });
+      if (!res.ok) throw new Error(`Failed to fetch messages: HTTP ${res.status}`);
+      batch = await res.json();
+    }
+
+    if (!Array.isArray(batch) || batch.length === 0) break;
+    allMessages.push(...batch);
+    if (batch.length < 100) break;
+    before = batch[batch.length - 1].id;
+    await new Promise((r) => setTimeout(r, 350));
+  }
+
+  allMessages.sort((a, b) =>
+    BigInt(a.id) < BigInt(b.id) ? -1 : BigInt(a.id) > BigInt(b.id) ? 1 : 0
+  );
+
+  const extracted = [];
+  const isFavImageUrl = (u) => {
+    if (typeof u !== "string") return false;
+    const clean = u.split("?")[0].toLowerCase();
+    return clean.endsWith(".gif") || clean.endsWith(".webp");
+  };
+
+  for (const msg of allMessages) {
+    if (Array.isArray(msg.attachments)) {
+      for (const att of msg.attachments) {
+        const isSupported =
+          att?.content_type === "image/gif" ||
+          att?.content_type === "image/webp" ||
+          isFavImageUrl(att?.filename) ||
+          isFavImageUrl(att?.url);
+        if (!isSupported || !att?.url) continue;
+
+        extracted.push({
+          key: att.url,
+          data: {
+            format: 1,
+            src: att.proxy_url || att.proxyUrl || att.url,
+            width: att.width || 400,
+            height: att.height || 400,
+          },
+        });
+      }
+    }
+
+    if (Array.isArray(msg.embeds)) {
+      for (const emb of msg.embeds) {
+        const key = emb?.url;
+        if (!key) continue;
+
+        if (emb.type === "gifv" && emb.video?.url) {
+          extracted.push({
+            key,
+            data: {
+              format: 2,
+              src: emb.video.proxyURL || emb.video.proxy_url || emb.video.url,
+              width: emb.video.width || emb.thumbnail?.width || 480,
+              height: emb.video.height || emb.thumbnail?.height || 270,
+            },
+          });
+        } else if (
+          (emb.type === "image" || emb.type === "gifv") &&
+          (isFavImageUrl(key) ||
+            isFavImageUrl(emb.image?.url) ||
+            isFavImageUrl(emb.thumbnail?.url))
+        ) {
+          const media = emb.image || emb.thumbnail;
+          if (!media?.url && !media?.proxyURL && !media?.proxy_url) continue;
+          extracted.push({
+            key,
+            data: {
+              format: 1,
+              src: media.proxyURL || media.proxy_url || media.url || key,
+              width: media.width || 400,
+              height: media.height || 400,
+            },
+          });
+        }
+      }
+    }
+  }
+
+  if (extracted.length === 0) {
+    console.log(`Scanned ${allMessages.length} message(s), but found 0 GIF/WebP files.`);
+    return;
+  }
+
+  if (typeof FrecencyStore.loadIfNecessary === "function") {
+    await FrecencyStore.loadIfNecessary();
+  }
+
+  let addedCount = 0;
+  let skippedCount = 0;
+
+  await FrecencyStore.updateAsync(
+    "favoriteGifs",
+    (fav) => {
+      if (!fav.gifs) fav.gifs = {};
+      let maxOrder = Object.values(fav.gifs).reduce(
+        (m, g) => Math.max(m, g?.order ?? 0),
+        0
+      );
+
+      for (const item of extracted) {
+        if (item.key in fav.gifs) {
+          skippedCount++;
+          continue;
+        }
+        maxOrder += 1;
+        fav.gifs[item.key] = {
+          ...item.data,
+          order: maxOrder,
+        };
+        addedCount++;
+      }
+    },
+    delayObj?.INFREQUENT_USER_ACTION
+  );
+
+  console.log(
+    `Done! Scanned ${allMessages.length} message(s), found ${extracted.length} GIF/WebP item(s). Added ${addedCount} new favorite(s), skipped ${skippedCount} duplicate(s).`
+  );
+})();
+```
+
+</details>
+
+---
+
+### Tool 7: Permanent GitHub GIF Pipeline (Grabber + Importer)
+
+Hosts your `.gif` and `.webp` library in a **Public GitHub repository** (non-expiring `raw.githubusercontent.com` CDN links) and imports them straight into Discord Favorites—no temp Discord server required. *(Tip: keep folder/file names simple with letters, numbers, `-`, and `_`, avoiding `&`, `(`, `)`, `,`, or `#`.)*
+
+#### How to Use:
+1. Open your Public GitHub repo's recursive tree JSON in a browser tab:
+   `https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/git/trees/main?recursive=1`
+2. Open DevTools Console (`Ctrl + Shift + I`), paste **Script A**, and press Enter to copy all sorted raw URLs to your clipboard.
+3. Switch to [Discord Web](https://discord.com/app), open DevTools Console, paste **Script B**, replace `PASTE_HERE` with your copied array (`Ctrl + V`), and hit Enter.
+
+#### Script A — GitHub API Link Grabber (`github-api-grabber.js`):
+<details>
+<summary>Click to expand GitHub link grabber script</summary>
+
+```javascript
+/**
+ * GitHub API Tree -> Raw Permanent GIF URLs Extractor
+ * Run on: https://api.github.com/repos/<USER>/<REPO>/git/trees/main?recursive=1
+ */
+(() => {
+  const parts = location.pathname.split("/");
+  const user = parts[2];
+  const repo = parts[3];
+  const branch = parts[6] || "main";
+
+  const raw = document.querySelector("pre")?.textContent || document.body.innerText;
+  const data = JSON.parse(raw.slice(raw.indexOf("{")));
+
+  const urls = (data.tree || [])
+    .filter((f) => f.type === "blob" && /\.(gif|webp|mp4|webm)$/i.test(f.path))
+    .sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true }))
+    .map(
+      (f) =>
+        `https://raw.githubusercontent.com/${user}/${repo}/${branch}/` +
+        f.path.split("/").map(encodeURIComponent).join("/")
+    );
+
+  const formatted = JSON.stringify(urls, null, 2);
+  console.log(`Found ${urls.length} link(s):\n` + formatted);
+  if (typeof copy === "function") copy(formatted);
+  navigator.clipboard?.writeText(formatted).catch(() => {});
+  console.log("Copied to clipboard! Now paste into the Discord importer script.");
+})();
+```
+
+</details>
+
+</details>
+
+---
+
+### Bonus: One-Click Bookmarklets (Zero `localStorage` / No DevTools Needed)
+
+Save any line below as a Chrome Bookmark URL on your Bookmarks bar.
+
+#### 1. `GitHub -> API` *(Click while on any GitHub repo)*
+<details>
+<summary>Click to expand bookmarklet</summary>
+
+```javascript
+javascript:(()=>{const p=location.pathname.split("/").filter(Boolean);if(p.length>=2)location.href=`https://api.github.com/repos/${p[0]}/${p[1]}/git/trees/main?recursive=1`;})();void 0;
+```
+
+</details>
+
+#### 2. `Copy GitHub GIFs` *(Click while on the `api.github.com` tree page)*
+<details>
+<summary>Click to expand bookmarklet</summary>
+
+```javascript
+javascript:(()=>{const p=location.pathname.split("/"),u=p[2],r=p[3],b=p[6]||"main",raw=document.querySelector("pre")?.textContent||document.body.innerText,d=JSON.parse(raw.slice(raw.indexOf("{"))),urls=(d.tree||[]).filter(f=>f.type==="blob"&&/\.(gif|webp|mp4|webm)$/i.test(f.path)).sort((a,c)=>a.path.localeCompare(c.path,void 0,{numeric:true})).map(f=>`https://raw.githubusercontent.com/${u}/${r}/${b}/`+f.path.split("/").map(encodeURIComponent).join("/")),out=JSON.stringify(urls);navigator.clipboard.writeText(out).then(()=>alert(`Copied ${urls.length} GIF links!`),()=>prompt(`Copy these ${urls.length} links:`,out));})();void 0;
+```
+
+</details>
+
+#### 3. `Import Discord GIFs` *(Click on Discord Web)*
+<details>
+<summary>Click to expand bookmarklet</summary>
+
+```javascript
+javascript:(async()=>{const raw=prompt("Paste your copied GitHub JSON links:");if(!raw)return;let URLS;try{URLS=JSON.parse(raw);}catch{return alert("Invalid JSON! Make sure you pasted the [...] list.");}const reqs=[];window.webpackChunkdiscord_app.push([[Symbol()],{},r=>reqs.push(r)]);window.webpackChunkdiscord_app.pop();const wp=reqs.sort((a,b)=>Object.keys(b?.c||{}).length-Object.keys(a?.c||{}).length)[0];if(!wp?.c)return alert("Failed to hook Discord.");const cands=[],seen=new Set(),add=o=>{if(!o||(typeof o!=="object"&&typeof o!=="function")||o===window||o===document||o===DOMTokenList.prototype||seen.has(o))return;seen.add(o);cands.push(o);},scan=e=>{add(e);if(!e||typeof e!=="object")return;let ks=[];try{ks=Object.keys(e);}catch{return;}for(const k of ks){let v;try{v=e[k];}catch{continue;}add(v);if(v&&typeof v==="object"){let ks2=[];try{ks2=Object.keys(v);}catch{continue;}for(const k2 of ks2){try{add(v[k2]);}catch{}}}}};for(const m of Object.values(wp.c))scan(m?.exports);const findSafe=fn=>cands.find(x=>{try{return x?.__notARealProp123__===void 0&&fn(x);}catch{return false;}});let FS=findSafe(x=>x?.ProtoClass?.typeName?.endsWith(".FrecencyUserSettings")&&typeof x?.updateAsync==="function");if(!FS&&wp.m){for(const[id,fac]of Object.entries(wp.m)){try{const s=fac.toString();if((s.includes("FrecencyUserSettings")&&s.includes("ProtoClass"))||(s.includes("favoriteGifs")&&s.includes("updateAsync")))scan(wp(id));}catch{}}FS=findSafe(x=>x?.ProtoClass?.typeName?.endsWith(".FrecencyUserSettings")&&typeof x?.updateAsync==="function");}if(!FS)return alert("Could not find FrecencyUserSettings.");const delay=findSafe(x=>typeof x?.INFREQUENT_USER_ACTION==="number");if(typeof FS.loadIfNecessary==="function")await FS.loadIfNecessary();const getSz=u=>new Promise(res=>{const t=setTimeout(()=>res({width:400,height:400}),1500),i=new Image();i.onload=()=>{clearTimeout(t);res({width:i.naturalWidth||400,height:i.naturalHeight||400});};i.onerror=()=>{clearTimeout(t);res({width:400,height:400});};i.src=u;});const clean=[...new Set(URLS.map(u=>String(u).trim()).filter(Boolean))],items=[];for(const u of clean){const c=u.split("?")[0].toLowerCase(),vid=c.endsWith(".mp4")||c.endsWith(".webm"),d=vid?{width:480,height:270}:await getSz(u);items.push({u,f:vid?2:1,...d});}let addC=0,skipC=0;await FS.updateAsync("favoriteGifs",fav=>{if(!fav.gifs)fav.gifs={};let max=Object.values(fav.gifs).reduce((m,g)=>Math.max(m,g?.order??0),0);for(const it of items){if(it.u in fav.gifs){skipC++;continue;}max+=1;fav.gifs[it.u]={format:it.f,src:it.u,width:it.width,height:it.height,order:max};addC++;}},delay?.INFREQUENT_USER_ACTION);alert(`Done! Added ${addC} new GIF(s), skipped ${skipC} duplicate(s).`);})();void 0;
+```
+
+</details>
+
+#### 4. `Delete Discord GIFs` *(Click on Discord Web)*
+<details>
+<summary>Click to expand bookmarklet</summary>
+
+```javascript
+javascript:(async()=>{if(!confirm("Delete ALL favorite GIFs on Discord? This cannot be undone."))return;const reqs=[];window.webpackChunkdiscord_app.push([[Symbol()],{},r=>reqs.push(r)]);window.webpackChunkdiscord_app.pop();const wp=reqs.sort((a,b)=>Object.keys(b?.c||{}).length-Object.keys(a?.c||{}).length)[0];if(!wp?.c)return alert("Failed to hook Discord.");const cands=[],seen=new Set(),add=o=>{if(!o||(typeof o!=="object"&&typeof o!=="function")||o===window||o===document||o===DOMTokenList.prototype||seen.has(o))return;seen.add(o);cands.push(o);},scan=e=>{add(e);if(!e||typeof e!=="object")return;let ks=[];try{ks=Object.keys(e);}catch{return;}for(const k of ks){let v;try{v=e[k];}catch{continue;}add(v);if(v&&typeof v==="object"){let ks2=[];try{ks2=Object.keys(v);}catch{continue;}for(const k2 of ks2){try{add(v[k2]);}catch{}}}}};for(const m of Object.values(wp.c))scan(m?.exports);const findSafe=fn=>cands.find(x=>{try{return x?.__notARealProp123__===void 0&&fn(x);}catch{return false;}});let FS=findSafe(x=>x?.ProtoClass?.typeName?.endsWith(".FrecencyUserSettings")&&typeof x?.updateAsync==="function");if(!FS&&wp.m){for(const[id,fac]of Object.entries(wp.m)){try{const s=fac.toString();if((s.includes("FrecencyUserSettings")&&s.includes("ProtoClass"))||(s.includes("favoriteGifs")&&s.includes("updateAsync")))scan(wp(id));}catch{}}FS=findSafe(x=>x?.ProtoClass?.typeName?.endsWith(".FrecencyUserSettings")&&typeof x?.updateAsync==="function");}if(!FS)return alert("Could not find FrecencyUserSettings.");const delay=findSafe(x=>typeof x?.INFREQUENT_USER_ACTION==="number");if(typeof FS.loadIfNecessary==="function")await FS.loadIfNecessary();const gifs=FS.getCurrentValue()?.favoriteGifs?.gifs||{},count=Object.keys(gifs).length;if(!count)return alert("No favorite GIFs to delete.");await FS.updateAsync("favoriteGifs",d=>{if(!d.gifs)return false;for(const k of Object.keys(d.gifs))delete d.gifs[k];},delay?.INFREQUENT_USER_ACTION);alert(`Done! Deleted ${count} favorite GIF(s).`);})();void 0;
+```
+
+</details>
 
 ---
 
