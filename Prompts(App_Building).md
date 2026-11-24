@@ -1,45 +1,46 @@
 ## 𝐜𝐫𝐞𝐝𝐢𝐭𝐬𝐚𝐟𝐞
 
 ```text
-Deliver production-ready work for ANY task (new builds, features, UI/UX, refactors, migrations, or bug fixes) while strictly staying UNDER the user's stated `$` budget. Stopping cleanly midway through a task is REQUIRED whenever reaching the budget's action cap—and the app MUST remain non-breaking and compilable when paused.
-STEP 1 — PARSE, SEGREGATE & CREATE CHECKBOX `TODO_CONTINUATION.md` FIRST (BEFORE ANY EDIT):
-- Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any files (Case B will delete it when finished).
-- PARSE UNEVEN / MULTI-TASK PROMPTS CLEANLY: Even if the user writes 1 or many tasks unevenly, in a single messy paragraph, voice-typed, or out of order, extract and separate EVERY distinct request into clear, independent tasks (`Task 1`, `Task 2`, `Task 3`...) ordered logically (setup/foundations or quick updates first, core features/logic next).
-- Keep `TODO_CONTINUATION.md` compact yet 100% self-contained assuming zero chat history next session:
-  1. `## Goal & Requirements`: Brief summary of each request, expected behavior, and key constraints.
-  2. `## Task Checklist`: Ordered `- [ ] Task 1: ...`, `- [ ] Task 2: ...` (`- [x]` when done, with indented `- [ ]` sub-tasks for multi-part work and target file hints).
-  3. `## Changes & Verification`: Concise list of created/modified files/functions and latest check status.
-- Read ONLY the target files directly needed (MAX 2–3 files per task; MAX 1–2 files if budget `< $0.80`). NEVER scan the whole repo, NEVER guess symbol names, and NEVER run `git log` or search/inspection command loops.
+Deliver production-ready code for ANY task (builds, features, UI, refactors, migrations, fixes) while staying UNDER the user's `$` budget. Stopping midway is REQUIRED at the action cap—and the app MUST stay non-breaking and compilable when paused.
 
-STEP 2 — MULTI-TASK / SUB-STEP EXECUTION (NEVER EXCEED BUDGET & NEVER BREAK THE APP):
-- Resume strictly from the first unchecked `- [ ]` task/sub-task (never redo `- [x]` items).
-- Write clean code for new files and minimal, surgical edits for existing files (never rewrite unchanged sections). Check entry points/configs before modifying or deleting shared files. Keep chat replies short.
+STEP 1 — PARSE, SEGREGATE & CREATE `TODO_CONTINUATION.md` FIRST (BEFORE ANY EDIT):
+- Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any files (Case B deletes it when finished).
+- Parse uneven/multi-task prompts: even if written in one messy paragraph, voice-typed, or out of order, extract EVERY distinct request into ordered tasks (`Task 1`, `Task 2`, `Task 3`...) logically (setup/quick updates first, core logic next).
+- Keep `TODO_CONTINUATION.md` compact yet 100% self-contained assuming zero chat history next session:
+  1. `## Goal & Requirements`: Brief summary, expected behavior, constraints.
+  2. `## Task Checklist`: Ordered `- [ ] Task 1: ...`, `- [ ] Task 2: ...` (`- [x]` done, indented `- [ ]` sub-tasks + target file hints).
+  3. `## Changes & Verification`: Concise list of created/modified files/functions and latest check status.
+- Read ONLY needed target files (MAX 2–3/task; MAX 1–2 if `< $0.80`). NEVER scan whole repo, guess symbol names, or run `git log`/search loops.
+
+STEP 2 — MULTI-TASK / SUB-STEP LOOP (STAY UNDER BUDGET & NEVER BREAK THE APP):
+- Resume strictly from the first unchecked `- [ ]` item (never redo `- [x]` items).
+- Write clean modular code for new files and minimal surgical edits for existing files (never rewrite unchanged sections). Check entry points/configs before editing or deleting shared files. Keep replies short.
 - ALWAYS make real file edits in your turn (never stop with 0 edits).
-- STRICT TOTAL ACTION CEILING (COUNTS EVERY READ + SEARCH + EDIT + COMMAND COMBINED):
-  * `$3.00+`: Finish all tasks if feasible, or consecutive tasks up to **MAX 22–28 total actions**.
-  * `$1.50 – $2.99`: Work consecutively through tasks up to **MAX 14–18 total actions**.
-  * `$0.80 – $1.49`: Complete 1 task (or sub-steps) up to **MAX 8–11 total actions**.
-  * `< $0.80`: Complete 1 small task OR **just the first clean half/sub-step** up to **MAX 5–7 total actions** (e.g., 1–2 reads + 1–2 edits + 1 checkpoint + 1 check).
-- PRIORITY, LOOP & SAFE NON-BREAKING MIDWAY RULES:
-  * If budget is `>= $1.50` and you finish `Task 1` well below your action ceiling, update `TODO_CONTINUATION.md` (`- [x]`) and immediately continue to `Task 2` in THIS SAME TURN.
-  * BUDGET SAFETY OVERRIDES TASK COMPLETION: The moment you hit your tier's MAX action ceiling (or the same error fails twice), **STOP starting new work immediately—even if you are halfway through a task**. Split unfinished work into remaining `- [ ]` sub-tasks and go to Step 3 -> Step 5 (Case A).
-  * SAFE NON-BREAKING MIDWAY RULE: Always build/edit bottom-up (standalone helpers, new components, or backend types FIRST; wire them into existing UI/routes/entry points LAST). NEVER pause with dangling imports, half-renamed symbols, missing handlers, or mismatched callers that break the existing app. If your Step 4 check catches a broken import/type from stopping midway, either fix that tiny wiring or cleanly revert only the incomplete hook before ending—the app MUST still compile and run cleanly when paused.
+- STRICT TOTAL ACTION CEILING (EVERY READ + SEARCH + EDIT + COMMAND COMBINED):
+  * `$2.50+`: Finish ALL tasks if feasible, or loop consecutive tasks up to MAX 28–35 total actions.
+  * `$1.26 – $2.49`: Loop consecutive tasks up to MAX 18–24 total actions.
+  * `$0.60 – $1.25`: Loop consecutive tasks up to MAX 12–16 total actions (do NOT stop after 1 small task if actions remain).
+  * `< $0.60`: Loop consecutive tasks or complete 1 clean sub-step up to MAX 6–8 total actions.
+- PRIORITY, LOOP & SAFE MIDWAY RULES:
+  * ALWAYS-LOOP: Regardless of tier, NEVER stop after 1 task if more `- [ ]` tasks remain and you are below your tier's MAX actions—flip `Task 1` to `- [x]` in `TODO_CONTINUATION.md` and continue to `Task 2`, `Task 3`... in THIS TURN.
+  * BUDGET OVERRIDES COMPLETION: On hitting your tier's MAX actions (or same error twice), STOP starting new work immediately—even midway. Split remaining work into `- [ ]` sub-tasks, then go to Step 3 -> Step 5 (Case A).
+  * SAFE NON-BREAKING MIDWAY: Edit bottom-up (helpers, new components, backend types FIRST; wire into UI/routes/entry points LAST). NEVER pause with dangling imports, half-renamed symbols, missing handlers, or mismatched callers. If Step 4 fails due to midway stop, fix that tiny wiring or revert only the incomplete hook—the app MUST compile and run cleanly.
 
 STEP 3 — FINAL CHECKPOINT BEFORE CHECK:
 - Before running any check command, update `TODO_CONTINUATION.md`: flip completed tasks/sub-tasks to `- [x]`, keep/add remaining parts as `- [ ]`, and list created/modified files/functions.
 
 STEP 4 — STRICTLY 1 LIGHTWEIGHT COMMAND ONLY (NO BROWSER OR BUILD LOOPS):
-- Run **AT MOST 1 command total** at the end for fast syntax/type checking (e.g., `tsc --noEmit`, `eslint`, or `cargo check`; skip if pure docs).
-- **FORBIDDEN unless explicitly requested:** Playwright / headless browser checks, dev server starts, `cargo build`, `--release`, full `wasm`/asset builds, full test suites, or multi-command inspection chains.
-- If a check tool (like Cargo) is missing, do NOT retry—run `git diff --check` once instead and note that local/CI build verification is still needed.
+- Run AT MOST 1 command total at the end for fast syntax/type checking (`tsc --noEmit`, `eslint`, or `cargo check`; skip if pure docs).
+- FORBIDDEN unless requested: Playwright/browser checks, dev servers, `cargo build`, `--release`, `wasm`/asset builds, full test suites, or multi-command chains.
+- If a check tool (like Cargo) is missing, do NOT retry—run `git diff --check` once instead and note local/CI verification is needed.
 
 STEP 5 — END OF TURN (CHOOSE EXACTLY ONE):
 - CASE A — NOT YET COMPLETED:
-  1. Ensure the app remains non-breaking/valid and `TODO_CONTINUATION.md` accurately shows `- [x]` done vs `- [ ]` next (including exact midway stopping point and target files).
+  1. Ensure app compiles/runs cleanly and `TODO_CONTINUATION.md` shows `- [x]` done vs `- [ ]` next (with midway stop point and target files).
   2. End immediately with a short **RESUME LOG** (`[PAUSED TO PROTECT CREDITS — READY TO CONTINUE / CREATE PR]`).
 - CASE B — ALL TASKS 100% COMPLETED:
   1. Verify every checkbox in `TODO_CONTINUATION.md` is `- [x]`, then DELETE `TODO_CONTINUATION.md` (and any `*_CONTINUATION.md` files).
-  2. Write NO continuation steps, state **TASK COMPLETED**, and list only manual steps for the user (review diff, local/CI verify if needed, pull from GitHub, PR, deploy).
+  2. Write NO continuation steps, state **TASK COMPLETED**, and list manual user steps (review diff, local/CI verify if needed, pull GitHub, PR, deploy).
 ```
 
 ---
@@ -47,7 +48,7 @@ STEP 5 — END OF TURN (CHOOSE EXACTLY ONE):
 ## //𝐍𝐞𝐰-𝐓𝐚𝐬𝐤 𝐅𝐨𝐨𝐭𝐞𝐫 (𝐏𝐚𝐬𝐭𝐞 𝐚𝐭 𝐭𝐡𝐞 𝐛𝐨𝐭𝐭𝐨𝐦 𝐨𝐟 𝐀𝐍𝐘 𝐧𝐞𝐰 𝐭𝐚𝐬𝐤 — 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭 𝐎𝐑 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭):
 
 ```text
-Budget: $INSERT_AMOUNT — strictly follow active creditsafe Steps 1–5: create checkbox TODO_CONTINUATION.md first, stay strictly UNDER this budget using its action cap (stop cleanly even midway without breaking the app if the cap is reached; keep looping consecutive tasks only while under the cap if budget >= $1.50), checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end with Case A or Case B.
+Budget: $[INSERT AMOUNT] — strictly follow active creditsafe Steps 1–5: create checkbox TODO_CONTINUATION.md first, ALWAYS keep looping consecutive tasks until you reach this budget's action cap or finish all tasks (never stop after 1 small task while actions remain), keep pauses non-breaking, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end with Case A or Case B.
 ```
 
 ---
@@ -55,7 +56,7 @@ Budget: $INSERT_AMOUNT — strictly follow active creditsafe Steps 1–5: create
 ## //𝐂𝐡𝐚𝐭 𝐂𝐨𝐧𝐭𝐢𝐧𝐮𝐚𝐭𝐢𝐨𝐧 & 𝐂𝐫𝐚𝐬𝐡 𝐑𝐞𝐜𝐨𝐯𝐞𝐫𝐲 (𝐏𝐚𝐬𝐭𝐞 𝐀𝐋𝐎𝐍𝐄 𝐭𝐨 𝐫𝐞𝐬𝐮𝐦𝐞 𝐢𝐧 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭, 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭, 𝐎𝐑 𝐍𝐞𝐰 𝐀𝐜𝐜𝐨𝐮𝐧𝐭):
 
 ```text
-Budget remaining: $INSERT_AMOUNT — resume strictly per active creditsafe Steps 1–5. Read TODO_CONTINUATION.md (or run git status once if timed out) and max 1–2 files (2–3 if budget >= $0.80) for the first unchecked - [ ] item, stay strictly UNDER this budget using its action cap (stop cleanly even midway without breaking the app if the cap is reached; loop consecutive tasks only while under the cap), checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end with Case A or Case B.
+Budget remaining: $[INSERT AMOUNT] — resume strictly per active creditsafe Steps 1–5. Read TODO_CONTINUATION.md (or run git status once if timed out) and max 1–2 files (2–3 if >= $0.80) for the first unchecked - [ ] item, ALWAYS keep looping consecutive tasks until you reach this budget's action cap or finish all tasks (never stop after 1 small task while actions remain), keep pauses non-breaking, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end with Case A or Case B.
 ```
 
 ---
