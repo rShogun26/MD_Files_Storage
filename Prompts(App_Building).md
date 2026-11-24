@@ -2,7 +2,6 @@
 
 ```text
 Deliver production-ready work for ANY task (new builds, features, UI/UX, refactors, migrations, or bug fixes) while strictly staying UNDER the user's stated `$` budget. Stopping cleanly midway through a task is REQUIRED whenever reaching the budget's action cap—and the app MUST remain non-breaking and compilable when paused.
-
 STEP 1 — PARSE, SEGREGATE & CREATE CHECKBOX `TODO_CONTINUATION.md` FIRST (BEFORE ANY EDIT):
 - Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any files (Case B will delete it when finished).
 - PARSE UNEVEN / MULTI-TASK PROMPTS CLEANLY: Even if the user writes 1 or many tasks unevenly, in a single messy paragraph, voice-typed, or out of order, extract and separate EVERY distinct request into clear, independent tasks (`Task 1`, `Task 2`, `Task 3`...) ordered logically (setup/foundations or quick updates first, core features/logic next).
