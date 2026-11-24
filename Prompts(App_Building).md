@@ -1,43 +1,43 @@
 ## 𝐜𝐫𝐞𝐝𝐢𝐭𝐬𝐚𝐟𝐞
 
 ```text
-Deliver 100% complete, production-ready code for any task while keeping credit usage consistent with the user's `$` budget, preventing timeouts/upstream drops, and keeping progress 100% resumable with zero chat history.
+Deliver 100% complete, production-ready work for ANY user request (new features, full builds, UI/UX updates, refactors, migrations, or bug fixes) while minimizing token/credit waste, preventing timeouts, and keeping progress 100% resumable with zero chat history.
 
-STEP 1 — PARSE, SEGREGATE & CREATE CHECKBOX `TODO_CONTINUATION.md` FIRST (BEFORE ANY CODE EDIT):
-- Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any code (Case B will delete it when finished).
-- PARSE UNEVEN / MULTI-TASK PROMPTS CLEANLY: Even if the user writes 1 or many tasks unevenly, in a single messy paragraph, voice-typed, or out of order, extract and separate EVERY distinct request into clear, independent tasks (`Task 1`, `Task 2`, `Task 3`...) ordered logically (quick UI/shared cleanups first, deeper logic/pipeline tasks next).
+STEP 1 — PARSE, SEGREGATE & CREATE CHECKBOX `TODO_CONTINUATION.md` FIRST (BEFORE ANY EDIT):
+- Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any files (Case B will delete it when finished).
+- PARSE UNEVEN / MULTI-TASK PROMPTS CLEANLY: Even if the user writes 1 or many tasks unevenly, in a single messy paragraph, voice-typed, or out of order, extract and separate EVERY distinct request into clear, independent tasks (`Task 1`, `Task 2`, `Task 3`...) ordered logically (setup/shared foundations or quick updates first, core features/logic next).
 - Keep `TODO_CONTINUATION.md` compact (low-token) yet 100% self-contained assuming zero chat history next session:
-  1. `## Goal & Exact Issue`: Brief, exact summary of each user request, bug symptoms, and expected behavior.
+  1. `## Goal & Requirements`: Brief, exact summary of each user request, expected behavior, and key constraints.
   2. `## Task Checklist`: Ordered `- [ ] Task 1: ...`, `- [ ] Task 2: ...` (`- [x]` when done, with indented `- [ ]` sub-tasks for large multi-part tasks and target file/feature hints).
-  3. `## Changes & Verification`: Concise list of modified files/functions and latest check status.
+  3. `## Changes & Verification`: Concise list of created/modified files/functions and latest check status.
 - Read ONLY the target files directly needed (MAX 3–4 files per task). NEVER scan the whole repo, NEVER guess symbol names, and NEVER run `git log` unless asked.
 
 STEP 2 — MULTI-TASK EXECUTION LOOP (PACED STRICTLY TO THE USER'S `$` BUDGET):
 - Resume strictly from the first unchecked `- [ ]` task (never redo `- [x]` tasks).
-- Make minimal, surgical edits (never rewrite whole unchanged files), inspect entry points/configs before modifying or deleting shared files/routes, and keep chat replies short and direct.
-- ALWAYS make real code edits in your turn (never stop with 0 edits or an empty RESUME LOG).
-- BUDGET QUOTA (MINIMUM WORK & UPPER SAFETY CEILING):
-  * `$3.00+`: Finish ALL tasks if possible, or complete AT LEAST 3–4 full consecutive tasks (MAX ~30–35 total tool actions across this turn before stopping).
-  * `$1.50 – $2.99`: Finish ALL tasks if small/medium, or complete AT LEAST 2–3 full consecutive tasks (MAX ~20–25 total tool actions across this turn before stopping).
-  * `$0.75 – $1.49`: Complete 1–2 full consecutive tasks (MAX ~12–16 total tool actions before stopping).
-  * `< $0.75`: Complete 1 clean task or focused sub-task (MAX ~7–10 total tool actions before stopping).
+- Write clean, modular code for new files, and make minimal, surgical edits to existing files (never rewrite whole unchanged sections). Inspect entry points/configs before modifying or deleting shared files/routes. Keep chat replies short and direct.
+- ALWAYS make real file edits in your turn (never stop with 0 edits or an empty RESUME LOG).
+- BUDGET QUOTA (WORKLOAD & UPPER SAFETY CEILING):
+  * `$3.00+`: Finish ALL tasks cleanly if feasible, or work consecutively through tasks up to MAX ~30–35 total tool actions before pausing cleanly.
+  * `$1.50 – $2.99`: Finish ALL tasks if small/medium, or complete consecutive tasks (at least 2 if multiple exist) up to MAX ~20–25 total tool actions before pausing cleanly.
+  * `$0.75 – $1.49`: Complete 1–2 full consecutive tasks (MAX ~12–16 total tool actions before pausing cleanly).
+  * `< $0.75`: Complete 1 clean task or focused sub-task (MAX ~7–10 total tool actions before pausing cleanly).
 - MANDATORY LOOP RULE (DO NOT STOP EARLY AFTER TASK 1):
-  * After finishing `Task 1`, immediately update `TODO_CONTINUATION.md` (flip `Task 1` to `- [x]` and note modified files).
-  * IF more `- [ ]` tasks remain AND you have NOT yet reached your budget tier's minimum task count or upper tool-action ceiling, **DO NOT go to Step 4/5 yet**—immediately continue in THIS SAME TURN to `Task 2`, then `Task 3`, updating `- [x]` after each completed task!
+  * After finishing `Task 1`, immediately update `TODO_CONTINUATION.md` (flip `Task 1` to `- [x]` and note edited files).
+  * IF more `- [ ]` tasks remain AND you have NOT yet reached your budget tier's task quota or upper action ceiling, **DO NOT go to Step 4/5 yet**—continue directly in THIS SAME TURN to `Task 2`, then `Task 3`, updating `- [x]` after each task!
   * Only exit this loop to Step 3 when: (a) ALL tasks are `- [x]`, OR (b) you reach your budget tier's upper action ceiling, OR (c) the same error fails twice and needs heavy debugging (Loop Brake).
 
 STEP 3 — FINAL CHECKPOINT BEFORE TERMINAL CHECK:
-- Before running your final check command, confirm `TODO_CONTINUATION.md` accurately marks every finished task `- [x]`, every unfinished task `- [ ]`, and lists modified files/functions.
+- Before running your final check command, confirm `TODO_CONTINUATION.md` accurately marks every finished task `- [x]`, every unfinished task `- [ ]`, and lists created/modified files/functions.
 
 STEP 4 — SINGLE FAST VERIFICATION ONLY (NO HEAVY BUILDS OR TIMEOUT LOOPS):
-- Run AT MOST 1 fast syntax/type check at the end of your turn's work (e.g., `tsc --noEmit`, `eslint`, or `cargo check`).
+- Run AT MOST 1 fast syntax/type check at the end of your turn's work (e.g., `tsc --noEmit`, `eslint`, or `cargo check`; skip if pure docs/non-code).
 - NEVER run `cargo build`, `--release`, full `wasm`/asset builds, full test suites, or headless browser previews unless explicitly requested.
 - If a required check tool (like Cargo) is missing in the workspace, do NOT retry it—run `git diff --check` once instead and note that local/CI build verification is still needed.
 
 STEP 5 — END OF TURN (CHOOSE EXACTLY ONE):
 - CASE A — TASK(S) NOT YET COMPLETED:
   1. Ensure all edited files are clean/valid and `TODO_CONTINUATION.md` clearly marks `- [x]` done vs `- [ ]` remaining (plus check status/missing tools and next target files).
-  2. End immediately with a short **RESUME LOG** (`[PAUSED TO PROTECT CREDITS — READY TO CONTINUE / CREATE PR]`).
+  2. End immediately with a short, copy-pasteable **RESUME LOG** (`[PAUSED TO PROTECT CREDITS — READY TO CONTINUE / CREATE PR]`).
 - CASE B — ALL TASKS 100% COMPLETED:
   1. Verify every checkbox in `TODO_CONTINUATION.md` is `- [x]`, then DELETE `TODO_CONTINUATION.md` (and any `*_CONTINUATION.md` files) completely.
   2. Write NO continuation steps, state **TASK COMPLETED**, and list only the manual steps for the user (review diff, run local/CI build/test if sandbox lacked tools, pull from GitHub, create/merge PR, deploy).
