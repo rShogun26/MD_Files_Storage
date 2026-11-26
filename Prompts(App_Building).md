@@ -1,11 +1,11 @@
 ## 𝐜𝐫𝐞𝐝𝐢𝐭𝐬𝐚𝐟𝐞
 
 ```text
-Deliver production-ready code for ANY task (builds, features, UI, refactors, migrations, fixes) while staying UNDER the user's `$` budget. Stopping midway is REQUIRED at the action cap—and the app MUST stay non-breaking and compilable when paused.
+Deliver production-ready work for ANY task while staying UNDER the user's `$` budget. Stopping midway is REQUIRED at the action cap—and the app MUST stay non-breaking and compilable.
 
 STEP 1 — PARSE, SEGREGATE & CREATE `TODO_CONTINUATION.md` FIRST (BEFORE ANY EDIT):
 - Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any files (Case B deletes it when finished).
-- Parse uneven/multi-task prompts: even if written in one messy paragraph, voice-typed, or out of order, extract EVERY distinct request into ordered tasks (`Task 1`, `Task 2`, `Task 3`...) logically (setup/quick updates first, core logic next).
+- Parse uneven/multi-task prompts: even if written in one messy paragraph, voice-typed, or out of order, extract EVERY request into ordered tasks (`Task 1`, `Task 2`, `Task 3`...) logically (setup/quick updates first, core logic next).
 - Keep `TODO_CONTINUATION.md` compact yet 100% self-contained assuming zero chat history next session:
   1. `## Goal & Requirements`: Brief summary, expected behavior, constraints.
   2. `## Task Checklist`: Ordered `- [ ] Task 1: ...`, `- [ ] Task 2: ...` (`- [x]` done, indented `- [ ]` sub-tasks + target file hints).
@@ -14,24 +14,25 @@ STEP 1 — PARSE, SEGREGATE & CREATE `TODO_CONTINUATION.md` FIRST (BEFORE ANY ED
 
 STEP 2 — MULTI-TASK / SUB-STEP LOOP (STAY UNDER BUDGET & NEVER BREAK THE APP):
 - Resume strictly from the first unchecked `- [ ]` item (never redo `- [x]` items).
-- Write clean modular code for new files and minimal surgical edits for existing files (never rewrite unchanged sections). Check entry points/configs before editing or deleting shared files. Keep replies short.
-- ALWAYS make real file edits in your turn (never stop with 0 edits).
+- Write clean modular code for new files; minimal surgical edits for existing files. Check entry points/configs before editing/deleting shared files. Keep replies short.
+- ALWAYS make real edits in your turn (never stop with 0 edits).
 - STRICT TOTAL ACTION CEILING (EVERY READ + SEARCH + EDIT + COMMAND COMBINED):
   * `$2.50+`: Finish ALL tasks if feasible, or loop consecutive tasks up to MAX 28–35 total actions.
-  * `$1.26 – $2.49`: Loop consecutive tasks up to MAX 18–24 total actions.
-  * `$0.60 – $1.25`: Loop consecutive tasks up to MAX 12–16 total actions (do NOT stop after 1 small task if actions remain).
-  * `< $0.60`: Loop consecutive tasks or complete 1 clean sub-step up to MAX 6–8 total actions.
+  * `$1.26 – $2.49`: Loop consecutive tasks up to MAX 20–26 total actions.
+  * `$0.60 – $1.25`: Loop consecutive tasks up to MAX 16–20 total actions (do NOT stop after 1 small task if actions remain).
+  * `< $0.60`: Loop consecutive tasks or complete 1 clean sub-step up to MAX 8–10 total actions.
+  * MODEL-COST SCALING: Heavy/expensive flagship models stay strictly inside these caps. Low-cost/fast models (e.g., Sol, Mini, Flash) cost far less per action—extend your action cap by ~50% so you do not stop prematurely after 1 small edit.
 - PRIORITY, LOOP & SAFE MIDWAY RULES:
-  * ALWAYS-LOOP: Regardless of tier, NEVER stop after 1 task if more `- [ ]` tasks remain and you are below your tier's MAX actions—flip `Task 1` to `- [x]` in `TODO_CONTINUATION.md` and continue to `Task 2`, `Task 3`... in THIS TURN.
-  * BUDGET OVERRIDES COMPLETION: On hitting your tier's MAX actions (or same error twice), STOP starting new work immediately—even midway. Split remaining work into `- [ ]` sub-tasks, then go to Step 3 -> Step 5 (Case A).
-  * SAFE NON-BREAKING MIDWAY: Edit bottom-up (helpers, new components, backend types FIRST; wire into UI/routes/entry points LAST). NEVER pause with dangling imports, half-renamed symbols, missing handlers, or mismatched callers. If Step 4 fails due to midway stop, fix that tiny wiring or revert only the incomplete hook—the app MUST compile and run cleanly.
+  * ALWAYS-LOOP: NEVER stop after 1 task if more `- [ ]` tasks remain and you are below your action cap—move straight to `Task 2`, `Task 3`... in THIS TURN and update `TODO_CONTINUATION.md` ONCE in Step 3 (saves actions).
+  * BUDGET OVERRIDES COMPLETION: On hitting your MAX actions (or same error twice), STOP starting new work immediately—even midway. Split remaining work into `- [ ]` sub-tasks, then go to Step 3 -> Step 5 (Case A).
+  * SAFE NON-BREAKING MIDWAY: Edit bottom-up (helpers, new components, backend types FIRST; wire into UI/routes/entry points LAST). NEVER pause with dangling imports, half-renamed symbols, or broken callers. If Step 4 fails due to midway stop, fix that wiring or revert only the incomplete hook—app MUST compile and run cleanly.
 
 STEP 3 — FINAL CHECKPOINT BEFORE CHECK:
-- Before running any check command, update `TODO_CONTINUATION.md`: flip completed tasks/sub-tasks to `- [x]`, keep/add remaining parts as `- [ ]`, and list created/modified files/functions.
+- Before running any check command, update `TODO_CONTINUATION.md` ONCE: flip all completed tasks/sub-tasks from this turn to `- [x]`, keep/add remaining parts as `- [ ]`, and list created/modified files/functions.
 
 STEP 4 — STRICTLY 1 LIGHTWEIGHT COMMAND ONLY (NO BROWSER OR BUILD LOOPS):
 - Run AT MOST 1 command total at the end for fast syntax/type checking (`tsc --noEmit`, `eslint`, or `cargo check`; skip if pure docs).
-- FORBIDDEN unless requested: Playwright/browser checks, dev servers, `cargo build`, `--release`, `wasm`/asset builds, full test suites, or multi-command chains.
+- FORBIDDEN unless requested: Playwright/browser checks, dev servers, `cargo build`, `--release`, `wasm` builds, full tests, or command loops.
 - If a check tool (like Cargo) is missing, do NOT retry—run `git diff --check` once instead and note local/CI verification is needed.
 
 STEP 5 — END OF TURN (CHOOSE EXACTLY ONE):
