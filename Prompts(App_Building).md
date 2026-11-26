@@ -2,43 +2,39 @@
 
 ```text
 MASTER UNIVERSAL WORKFLOW (ALL MODELS & ALL TASK TYPES — FOLLOW STRICTLY IN ORDER):
-Deliver production-ready work for ANY task while staying UNDER the user's `$` budget. Stopping midway is REQUIRED at the action cap—and the app MUST stay non-breaking and compilable.
-STEP 1 — PARSE, SEGREGATE & CREATE `TODO_CONTINUATION.md` FIRST (BEFORE ANY EDIT):
-- Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any files (Case B deletes it when finished).
-- Parse uneven/multi-task prompts: even if written in one messy paragraph, voice-typed, or out of order, extract EVERY request into ordered tasks (`Task 1`, `Task 2`, `Task 3`...) logically (setup/quick updates first, core logic next).
-- Keep `TODO_CONTINUATION.md` compact yet 100% self-contained assuming zero chat history next session:
-  1. `## Goal & Requirements`: Brief summary, expected behavior, constraints.
-  2. `## Task Checklist`: Ordered `- [ ] Task 1: ...`, `- [ ] Task 2: ...` (`- [x]` done, indented `- [ ]` sub-tasks + target file hints).
-  3. `## Changes & Verification`: Concise list of created/modified files/functions and latest check status.
-- Read ONLY needed target files (MAX 2–3/task; MAX 1–2 if `< $0.80`). NEVER scan whole repo, guess symbol names, or run `git log`/search loops.
+Deliver 100% production-ready work for ANY task (new builds, features, UI/UX, refactors, migrations, or bug fixes) with zero wasted credits and seamless continuation across chats/accounts without needing prior chat history.STEP 1 — PARSE, PLAN & CREATE `TODO_CONTINUATION.md` FIRST:
+- Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists.
+  * On timeout/crash recovery (`Agent Timeout` / `Model unavailable`) if `.md` is missing/stale, run `git status` / `git diff --stat` ONCE to detect edits, then create/update `TODO_CONTINUATION.md` first.
+  * For multi-task or large tasks, ALWAYS create `TODO_CONTINUATION.md` BEFORE editing code. (Skip creating it ONLY for a tiny 1-file fix unless you must pause early.)
+- Parse uneven/multi-task input: even if written in 1 messy paragraph, voice-typed, or out of order, extract EVERY request into ordered tasks (`Task 1`, `Task 2`...) logically (foundations/quick updates first, core logic next).
+- Keep `TODO_CONTINUATION.md` compact yet 100% self-contained:
+  1. `## Goal & Requirements`: Brief summary of each request, expected behavior, and constraints.
+  2. `## Task Checklist`: Ordered `- [ ] Task 1: ...`, `- [ ] Task 2: ...` (`- [x]` done, indented `- [ ]` sub-tasks + target file/symbol hints).
+  3. `## Changes & Verification`: Concise list of created/modified files/functions, latest check status, and exact next step.
 
-STEP 2 — MULTI-TASK / SUB-STEP LOOP (STAY UNDER BUDGET & NEVER BREAK THE APP):
+STEP 2 — ZERO-WASTE CONTINUOUS EXECUTION (NEVER BREAK THE APP):
 - Resume strictly from the first unchecked `- [ ]` item (never redo `- [x]` items).
-- Write clean modular code for new files; minimal surgical edits for existing files. Check entry points/configs before editing/deleting shared files. Keep replies short.
-- ALWAYS make real edits in your turn (never stop with 0 edits).
-- STRICT TOTAL ACTION CEILING (EVERY READ + SEARCH + EDIT + COMMAND COMBINED):
-  * `$2.50+`: Finish ALL tasks if feasible, or loop consecutive tasks up to MAX 28–35 total actions.
-  * `$1.26 – $2.49`: Loop consecutive tasks up to MAX 20–26 total actions.
-  * `$0.60 – $1.25`: Loop consecutive tasks up to MAX 16–20 total actions (do NOT stop after 1 small task if actions remain).
-  * `< $0.60`: Loop consecutive tasks or complete 1 clean sub-step up to MAX 8–10 total actions.
-  * MODEL-COST SCALING: Heavy/expensive flagship models stay strictly inside these caps. Low-cost/fast models (e.g., Sol, Mini, Flash) cost far less per action—extend your action cap by ~50% so you do not stop prematurely after 1 small edit.
-- PRIORITY, LOOP & SAFE MIDWAY RULES:
-  * ALWAYS-LOOP: NEVER stop after 1 task if more `- [ ]` tasks remain and you are below your action cap—move straight to `Task 2`, `Task 3`... in THIS TURN and update `TODO_CONTINUATION.md` ONCE in Step 3 (saves actions).
-  * BUDGET OVERRIDES COMPLETION: On hitting your MAX actions (or same error twice), STOP starting new work immediately—even midway. Split remaining work into `- [ ]` sub-tasks, then go to Step 3 -> Step 5 (Case A).
-  * SAFE NON-BREAKING MIDWAY: Edit bottom-up (helpers, new components, backend types FIRST; wire into UI/routes/entry points LAST). NEVER pause with dangling imports, half-renamed symbols, or broken callers. If Step 4 fails due to midway stop, fix that wiring or revert only the incomplete hook—app MUST compile and run cleanly.
+- Read ONLY target files directly needed for the active task (MAX 2–3 files per task). NEVER scan the whole repo, guess symbol names, or run `git log`/multi-search loops.
+- Write clean modular code for new files; minimal surgical edits for existing files (never rewrite unchanged sections). Check entry points/configs before modifying/deleting shared files. Keep replies very short.
+- ALWAYS make real file edits in your turn (never stop with 0 edits or an empty RESUME LOG).
+- CONTINUOUS EXECUTION & SMART STOP RULES:
+  * NORMAL MODE (Default): Execute consecutive tasks smoothly (`Task 1` -> `Task 2` -> `Task 3`...) in THIS TURN until all tasks finish—do NOT stop early after 1 small task.
+  * LOW-CREDIT MODE (Only if user writes `Low-credit mode`): Complete 1 clean task (or 1 safe sub-step if large), then pause cleanly under Case A.
+  * HUGE-TASK & LOOP BRAKES: Pause early under Case A ONLY if: (a) you hit ~25–30 total actions on a massive task (avoids timeouts), OR (b) the same error fails twice.
+  * SAFE NON-BREAKING MIDWAY RULE: Edit bottom-up (helpers, new components, backend types FIRST; wire into UI/routes/entry points LAST). NEVER pause with dangling imports, half-renamed symbols, or broken callers—the app MUST compile and run cleanly whenever paused.
 
-STEP 3 — FINAL CHECKPOINT BEFORE CHECK:
-- Before running any check command, update `TODO_CONTINUATION.md` ONCE: flip all completed tasks/sub-tasks from this turn to `- [x]`, keep/add remaining parts as `- [ ]`, and list created/modified files/functions.
+STEP 3 — CHECKPOINT PROGRESS BEFORE CHECK:
+- Before running any check command, update `TODO_CONTINUATION.md` ONCE: flip completed tasks/sub-tasks to `- [x]`, keep/split remaining work as `- [ ]`, and list created/modified files/symbols.
 
-STEP 4 — STRICTLY 1 LIGHTWEIGHT COMMAND ONLY (NO BROWSER OR BUILD LOOPS):
-- Run AT MOST 1 command total at the end for fast syntax/type checking (`tsc --noEmit`, `eslint`, or `cargo check`; skip if pure docs).
-- FORBIDDEN unless requested: Playwright/browser checks, dev servers, `cargo build`, `--release`, `wasm` builds, full tests, or command loops.
-- If a check tool (like Cargo) is missing, do NOT retry—run `git diff --check` once instead and note local/CI verification is needed.
+STEP 4 — STRICTLY 1 FAST SYNTAX CHECK ONLY (ZERO BUILD/BROWSER LOOPS):
+- Run AT MOST 1 fast syntax/type check at the end (`tsc --noEmit`, `eslint`, or `cargo check`; skip if pure docs).
+- FORBIDDEN unless explicitly requested: Playwright/headless browser checks, dev servers, `cargo build`, `--release`, full `wasm`/asset builds, full test suites, or multi-command chains.
+- If a check tool (like Cargo) is missing in the sandbox, do NOT retry—run `git diff --check` once instead and note local/CI verification is still needed.
 
 STEP 5 — END OF TURN (CHOOSE EXACTLY ONE):
-- CASE A — NOT YET COMPLETED:
-  1. Ensure app compiles/runs cleanly and `TODO_CONTINUATION.md` shows `- [x]` done vs `- [ ]` next (with midway stop point and target files).
-  2. End immediately with a short **RESUME LOG** (`[PAUSED TO PROTECT CREDITS — READY TO CONTINUE / CREATE PR]`).
+- CASE A — TASK(S) NOT YET COMPLETED:
+  1. Ensure app builds/runs cleanly (fix tiny wiring or revert incomplete hook if Step 4 failed from a pause) and `TODO_CONTINUATION.md` shows `- [x]` done vs `- [ ]` next + target files.
+  2. End immediately with a short **RESUME LOG** (`[PAUSED CLEANLY — READY TO CONTINUE / CREATE PR]`).
 - CASE B — ALL TASKS 100% COMPLETED:
   1. Verify every checkbox in `TODO_CONTINUATION.md` is `- [x]`, then DELETE `TODO_CONTINUATION.md` (and any `*_CONTINUATION.md` files).
   2. Write NO continuation steps, state **TASK COMPLETED**, and list manual user steps (review diff, local/CI verify if needed, pull GitHub, PR, deploy).
@@ -49,15 +45,18 @@ STEP 5 — END OF TURN (CHOOSE EXACTLY ONE):
 ## //𝐍𝐞𝐰-𝐓𝐚𝐬𝐤 𝐅𝐨𝐨𝐭𝐞𝐫 (𝐏𝐚𝐬𝐭𝐞 𝐚𝐭 𝐭𝐡𝐞 𝐛𝐨𝐭𝐭𝐨𝐦 𝐨𝐟 𝐀𝐍𝐘 𝐧𝐞𝐰 𝐭𝐚𝐬𝐤 — 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭 𝐎𝐑 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭):
 
 ```text
-Budget: $[INSERT AMOUNT] — strictly follow active creditsafe Steps 1–5: create checkbox TODO_CONTINUATION.md first, ALWAYS keep looping consecutive tasks until you reach this budget's action cap or finish all tasks (never stop after 1 small task while actions remain), keep pauses non-breaking, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end with Case A or Case B.
-```
+Follow active creditsafe Steps 1–5 strictly: parse into TODO_CONTINUATION.md first (skip only if tiny 1-file fix), execute tasks consecutively with minimal file reads & surgical edits, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end cleanly with Case A or Case B.``
+
+//add low credit mode (if below $1) -> Low-credit mode.
 
 ---
 
 ## //𝐂𝐡𝐚𝐭 𝐂𝐨𝐧𝐭𝐢𝐧𝐮𝐚𝐭𝐢𝐨𝐧 & 𝐂𝐫𝐚𝐬𝐡 𝐑𝐞𝐜𝐨𝐯𝐞𝐫𝐲 (𝐏𝐚𝐬𝐭𝐞 𝐀𝐋𝐎𝐍𝐄 𝐭𝐨 𝐫𝐞𝐬𝐮𝐦𝐞 𝐢𝐧 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭, 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭, 𝐎𝐑 𝐍𝐞𝐰 𝐀𝐜𝐜𝐨𝐮𝐧𝐭):
 
 ```text
-Budget remaining: $[INSERT AMOUNT] — resume strictly per active creditsafe Steps 1–5. Read TODO_CONTINUATION.md (or run git status once if timed out) and max 1–2 files (2–3 if >= $0.80) for the first unchecked - [ ] item, ALWAYS keep looping consecutive tasks until you reach this budget's action cap or finish all tasks (never stop after 1 small task while actions remain), keep pauses non-breaking, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end with Case A or Case B.
+Resume strictly per active creditsafe Steps 1–5: read TODO_CONTINUATION.md (or git status once if the last turn timed out/dropped), pick up from the first unchecked - [ ] item, continue smoothly with minimal reads & surgical edits, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end cleanly with Case A or Case B.
+
+//add low credit mode (if below $1) -> Low-credit mode.
 ```
 
 ---
