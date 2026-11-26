@@ -59,6 +59,10 @@ Resume strictly per active creditsafe Steps 1–5: read TODO_CONTINUATION.md (or
 //add low credit mode (if below $1) -> Low-credit mode.
 ```
 
+# //𝐒𝐭𝐨𝐩 𝐂𝐨𝐝𝐞 𝐚𝐧𝐝 𝐒𝐚𝐯𝐞 𝐚𝐬 𝐆𝐈𝐓:
+```text
+STOP all new coding. Check git status and git diff --stat once: if any partial edit leaves the app broken, cleanly revert only that incomplete edit. Update TODO_CONTINUATION.md with what is done (- [x]) vs remaining (- [ ]), commit and push to the working branch, and print a short RESUME LOG so I can continue in a new account.
+```
 ---
 
 ## //𝐜𝐫𝐞𝐚𝐭𝐢𝐧𝐠 & 𝐦𝐞𝐫𝐠𝐢𝐧𝐠 𝐨𝐟 𝐏𝐑 𝐢𝐧 𝐠𝐢𝐭𝐡𝐮𝐛 𝐫𝐞𝐩𝐨 (𝐟𝐨𝐫 𝐔𝐑𝐋 𝐁𝐚𝐬𝐞𝐝):
