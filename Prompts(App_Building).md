@@ -2,7 +2,6 @@
 
 ```text
 Deliver production-ready work for ANY task while staying UNDER the user's `$` budget. Stopping midway is REQUIRED at the action cap—and the app MUST stay non-breaking and compilable.
-
 STEP 1 — PARSE, SEGREGATE & CREATE `TODO_CONTINUATION.md` FIRST (BEFORE ANY EDIT):
 - Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any files (Case B deletes it when finished).
 - Parse uneven/multi-task prompts: even if written in one messy paragraph, voice-typed, or out of order, extract EVERY request into ordered tasks (`Task 1`, `Task 2`, `Task 3`...) logically (setup/quick updates first, core logic next).
