@@ -1,6 +1,7 @@
 ## 𝐜𝐫𝐞𝐝𝐢𝐭𝐬𝐚𝐟𝐞
 
 ```text
+MASTER UNIVERSAL WORKFLOW (ALL MODELS & ALL TASK TYPES — FOLLOW STRICTLY IN ORDER):
 Deliver production-ready work for ANY task while staying UNDER the user's `$` budget. Stopping midway is REQUIRED at the action cap—and the app MUST stay non-breaking and compilable.
 STEP 1 — PARSE, SEGREGATE & CREATE `TODO_CONTINUATION.md` FIRST (BEFORE ANY EDIT):
 - Check if `TODO_CONTINUATION.md` (or `*_CONTINUATION.md`) exists. If not, ALWAYS create `TODO_CONTINUATION.md` FIRST—before editing any files (Case B deletes it when finished).
