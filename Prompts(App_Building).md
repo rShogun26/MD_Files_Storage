@@ -43,20 +43,17 @@ STEP 5 — END OF TURN (CHOOSE EXACTLY ONE):
 ---
 
 ## //𝐍𝐞𝐰-𝐓𝐚𝐬𝐤 𝐅𝐨𝐨𝐭𝐞𝐫 (𝐏𝐚𝐬𝐭𝐞 𝐚𝐭 𝐭𝐡𝐞 𝐛𝐨𝐭𝐭𝐨𝐦 𝐨𝐟 𝐀𝐍𝐘 𝐧𝐞𝐰 𝐭𝐚𝐬𝐤 — 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭 𝐎𝐑 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭):
-
+add low credit mode (if below $1) -> Low-credit mode.
 ```text
-Follow active creditsafe Steps 1–5 strictly: parse into TODO_CONTINUATION.md first (skip only if tiny 1-file fix), execute tasks consecutively with minimal file reads & surgical edits, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end cleanly with Case A or Case B.``
-
-//add low credit mode (if below $1) -> Low-credit mode.
+Follow active creditsafe Steps 1–5 strictly: parse into TODO_CONTINUATION.md first (skip only if tiny 1-file fix), execute tasks consecutively with minimal file reads & surgical edits, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end cleanly with Case A or Case B.
 ```
 
 ---
 
-## //𝐂𝐡𝐚𝐭 𝐂𝐨𝐧𝐭𝐢𝐧𝐮𝐚𝐭𝐢𝐨𝐧 & 𝐂𝐫𝐚𝐬𝐡 𝐑𝐞𝐜𝐨𝐯𝐞𝐫𝐲 (𝐏𝐚𝐬𝐭𝐞 𝐀𝐋𝐎𝐍𝐄 𝐭𝐨 𝐫𝐞𝐬𝐮𝐦𝐞 𝐢𝐧 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭, 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭, 𝐎𝐑 𝐍𝐞𝐰 𝐀𝐜𝐜𝐨𝐮𝐧𝐭):
+## //𝐂𝐡𝐚𝐭 𝐂𝐨𝐧𝐭𝐢𝐧𝐮𝐚𝐭𝐢𝐨𝐧 & 𝐂𝐫𝐚𝐬𝐡 𝐑𝐞𝐜𝐨𝐯𝐞𝐫𝐲 (𝐏𝐚𝐬𝐭𝐞 𝐀𝐋𝐎𝐍𝐄 𝐭𝐨 𝐫𝐞𝐬𝐮𝐦𝐞 𝐢𝐧 𝐒𝐚𝐦𝐞 𝐂𝐡𝐚𝐭, 𝐍𝐞𝐰 𝐂𝐡𝐚𝐭, 𝐎𝐑 𝐍𝐞𝐰 𝐀𝐜𝐜𝐨𝐮𝐧𝐭)://add low credit mode (if below $1) -> Low-credit mode.
+add low credit mode (if below $1) -> Low-credit mode.
 ```text
 Resume strictly per active creditsafe Steps 1–5: read TODO_CONTINUATION.md (or git status once if the last turn timed out/dropped), pick up from the first unchecked - [ ] item, continue smoothly with minimal reads & surgical edits, checkpoint - [x] BEFORE running AT MOST 1 fast syntax check (NO browser checks/builds), and end cleanly with Case A or Case B.
-
-//add low credit mode (if below $1) -> Low-credit mode.
 ```
 
 # //𝐒𝐭𝐨𝐩 𝐂𝐨𝐝𝐞 𝐚𝐧𝐝 𝐒𝐚𝐯𝐞 𝐚𝐬 𝐆𝐈𝐓:
